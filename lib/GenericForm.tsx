@@ -10,6 +10,7 @@ import {
 import DynamicInput from "./components/DynamicInput";
 import { FieldInput } from "./@types";
 import { getDefaultValueObject } from "./utils";
+import { evaluateConditions } from "./utils/form";
 
 interface GenericFormProps<TFieldValues extends FieldValues> {
   fieldsInput: FieldInput[];
@@ -33,16 +34,6 @@ const GenericForm = <TFieldValues extends FieldValues>({
     defaultValues: defaultValues,
   });
 
-  const isFieldVisible = <TFieldValues extends FieldValues>(
-    conditionCallback: undefined | ((formValue: TFieldValues) => boolean),
-    formValue: TFieldValues
-  ): boolean => {
-    if (!conditionCallback) return true;
-    if (typeof conditionCallback !== "function") return true;
-    const isVisible = conditionCallback(formValue);
-    return isVisible;
-  };
-
   const formValues = methods.watch(); // Get current form values
 
   return (
@@ -52,34 +43,22 @@ const GenericForm = <TFieldValues extends FieldValues>({
         className={classes?.formContainer}
       >
         {fieldsInput.map((field, index) => {
-          const isVisible = isFieldVisible(field.showWhen, formValues);
+          const updatedField = evaluateConditions(formValues, field);
 
-          if (isVisible) {
-            return (
-              <DynamicInput
-                key={index}
-                inputType={field.inputType}
-                name={field.name}
-                label={field.label}
-                options={field?.options}
-                validation={field.validation}
-                classes={field?.classes}
-              />
-            );
-          }
-          return null;
+          if (updatedField?.hide) return null;
+
+          return (
+            <DynamicInput
+              key={index}
+              inputType={updatedField.inputType}
+              name={updatedField.name}
+              label={updatedField.label}
+              options={updatedField?.options}
+              validation={updatedField.validation}
+              classes={updatedField?.classes}
+            />
+          );
         })}
-        {/* {fieldsInput.map((field, index) => (
-          <DynamicInput
-            key={index}
-            inputType={field.inputType}
-            name={field.name}
-            label={field.label}
-            options={field?.options}
-            validation={field.validation}
-            classes={classes}
-          />
-        ))} */}
         <button type="submit" className={classes?.submitButton}>
           Submit
         </button>

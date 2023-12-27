@@ -10,8 +10,15 @@ export type FieldInput = {
   options?: Option[]; // For select, radio, checkbox
   validation?: Record<string, unknown>; // Validation rules or schema for the field
   defaultValue?: FieldValue;
-  showWhen?: (formValue: Record<string, unknown>) => boolean;
   classes?: Record<string, string>;
+  disable?: boolean;
+  hide?: boolean;
+  conditions?: FieldConditions[];
+};
+
+export type FieldConditions = {
+  when: (formValue: Record<string, unknown>) => boolean;
+  then: (currentField: FieldInput) => Partial<FieldInput>;
 };
 
 export type FieldValue = string | number | boolean;

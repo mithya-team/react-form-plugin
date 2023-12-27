@@ -56,10 +56,17 @@ const fieldsInput: FieldInput[] = [
       { value: "pizza", label: "Pizza" },
       { value: "burger", label: "Burger" },
     ],
-    showWhen: (formValues: Record<string, unknown>) => {
-      if (formValues["gender"] === "female") return true;
-      return false;
-    },
+    hide: true,
+    conditions: [
+      {
+        when: (formValues) => {
+          return formValues["gender"] === "female";
+        },
+        then: () => {
+          return { hide: false };
+        },
+      },
+    ],
   },
   {
     inputType: "select",
@@ -70,10 +77,17 @@ const fieldsInput: FieldInput[] = [
       { value: "char", label: "Charmander" },
       { value: "saiduck", label: "Saiduck" },
     ],
-    showWhen: (formValues: Record<string, unknown>) => {
-      if (formValues["gender"] === "male") return true;
-      return false;
-    },
+    hide: true,
+    conditions: [
+      {
+        when: (formValues) => {
+          return formValues["gender"] === "male";
+        },
+        then: () => {
+          return { hide: false };
+        },
+      },
+    ],
   },
   {
     inputType: "switch",
