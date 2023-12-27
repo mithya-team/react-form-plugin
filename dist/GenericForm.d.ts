@@ -8,5 +8,5 @@ interface GenericFormProps<TFieldValues extends FieldValues> {
     classes?: Record<string, string>;
     onGetValues?: (getValuesFunction: () => object) => void;
 }
-declare const GenericForm: <TFieldValues extends FieldValues>({ fieldsInput, onSubmit, resolver, classes, onGetValues, }: GenericFormProps<TFieldValues>) => React.ReactNode;
+declare const GenericForm: <TFieldValues extends FieldValues>({ fieldsInput, onSubmit, resolver, classes, }: GenericFormProps<TFieldValues>) => React.ReactNode;
 export default GenericForm;
