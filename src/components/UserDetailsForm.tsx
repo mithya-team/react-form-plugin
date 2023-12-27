@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FieldInput, GenericForm } from "../../lib";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -15,10 +15,13 @@ const schema = z.object({
   }),
   favouriteDish: z
     .array(z.string())
-    .nonempty("Select at least one favourite dish"),
-  favouritePokemon: z.enum(["pik", "char", "saiduck"], {
-    required_error: "Pokemons is required",
-  }),
+    .nonempty("Select at least one favourite dish")
+    .optional(), // mark the field as optional if conditional rendering is applied
+  favouritePokemon: z
+    .enum(["pik", "char", "saiduck"], {
+      required_error: "Pokemons is required",
+    })
+    .optional(), // mark the field as optional if conditional rendering is applied
   preferredTheme: z.boolean({ invalid_type_error: "value should be boolean" }),
 });
 
@@ -53,6 +56,10 @@ const fieldsInput: FieldInput[] = [
       { value: "pizza", label: "Pizza" },
       { value: "burger", label: "Burger" },
     ],
+    showWhen: (formValues: Record<string, unknown>) => {
+      if (formValues["gender"] === "female") return true;
+      return false;
+    },
   },
   {
     inputType: "select",
@@ -63,6 +70,10 @@ const fieldsInput: FieldInput[] = [
       { value: "char", label: "Charmander" },
       { value: "saiduck", label: "Saiduck" },
     ],
+    showWhen: (formValues: Record<string, unknown>) => {
+      if (formValues["gender"] === "male") return true;
+      return false;
+    },
   },
   {
     inputType: "switch",
@@ -74,19 +85,8 @@ const fieldsInput: FieldInput[] = [
 
 // UserDetailsForm Component
 const UserDetailsForm: React.FC = () => {
-  const [getFormValues, setGetFormValues] = useState<() => object>(
-    () => () => ({})
-  );
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => console.log(data);
-
-  const handleGetValues = (getValuesFunction: () => object) => {
-    setGetFormValues(() => getValuesFunction);
-  };
-
-  const logFormValues = () => {
-    console.log("form value ", getFormValues()); // use getValues in the parent component
-  };
 
   return (
     <div>
@@ -94,9 +94,7 @@ const UserDetailsForm: React.FC = () => {
         fieldsInput={fieldsInput}
         onSubmit={onSubmit}
         resolver={zodResolver(schema)}
-        onGetValues={handleGetValues}
       />
-      <button onClick={logFormValues}>Log Form Values</button>
     </div>
   );
 };

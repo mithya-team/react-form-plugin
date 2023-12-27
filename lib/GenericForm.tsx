@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   useForm,
   FormProvider,
@@ -24,7 +24,6 @@ const GenericForm = <TFieldValues extends FieldValues>({
   onSubmit,
   resolver,
   classes,
-  onGetValues,
 }: GenericFormProps<TFieldValues>): React.ReactNode => {
   const defaultValues = getDefaultValueObject(
     fieldsInput
@@ -34,14 +33,17 @@ const GenericForm = <TFieldValues extends FieldValues>({
     defaultValues: defaultValues,
   });
 
-  const { getValues } = methods;
+  const isFieldVisible = <TFieldValues extends FieldValues>(
+    conditionCallback: undefined | ((formValue: TFieldValues) => boolean),
+    formValue: TFieldValues
+  ): boolean => {
+    if (!conditionCallback) return true;
+    if (typeof conditionCallback !== "function") return true;
+    const isVisible = conditionCallback(formValue);
+    return isVisible;
+  };
 
-  // Expose getValues to the parent component when component mounts or getValues changes
-  useEffect(() => {
-    if (onGetValues) {
-      onGetValues(getValues);
-    }
-  }, [getValues, onGetValues]);
+  const formValues = methods.watch(); // Get current form values
 
   return (
     <FormProvider {...methods}>
@@ -49,7 +51,25 @@ const GenericForm = <TFieldValues extends FieldValues>({
         onSubmit={methods.handleSubmit(onSubmit)}
         className={classes?.formContainer}
       >
-        {fieldsInput.map((field, index) => (
+        {fieldsInput.map((field, index) => {
+          const isVisible = isFieldVisible(field.showWhen, formValues);
+
+          if (isVisible) {
+            return (
+              <DynamicInput
+                key={index}
+                inputType={field.inputType}
+                name={field.name}
+                label={field.label}
+                options={field?.options}
+                validation={field.validation}
+                classes={field?.classes}
+              />
+            );
+          }
+          return null;
+        })}
+        {/* {fieldsInput.map((field, index) => (
           <DynamicInput
             key={index}
             inputType={field.inputType}
@@ -59,7 +79,7 @@ const GenericForm = <TFieldValues extends FieldValues>({
             validation={field.validation}
             classes={classes}
           />
-        ))}
+        ))} */}
         <button type="submit" className={classes?.submitButton}>
           Submit
         </button>
