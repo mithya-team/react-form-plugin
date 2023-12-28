@@ -226,8 +226,6 @@ const fieldsInput: FieldInput[] = [
 
 ### date and time config example
 
-### Resolver Demo
-
 ```tsx
 import { FieldInput } from "../../lib";
 import { z } from "zod";

@@ -16,6 +16,7 @@ export type FieldInput = {
   hide?: boolean;
   conditions?: FieldConditions[];
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
+  text?: string;
 };
 
 export type FieldConditions = {

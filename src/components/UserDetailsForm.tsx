@@ -123,6 +123,11 @@ const fieldsInput: FieldInput[] = [
     name: "file",
     label: "file",
   },
+  {
+    type: "plainText",
+    name: "plainText",
+    text: "we know each other",
+  },
 ];
 
 const UserDetailsForm: React.FC = () => {
@@ -132,13 +137,11 @@ const UserDetailsForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <ReactForm
-        fields={fieldsInput}
-        onSubmit={onSubmit}
-        validation={zodResolver(schema)}
-      />
-    </div>
+    <ReactForm
+      fields={fieldsInput}
+      onSubmit={onSubmit}
+      validation={zodResolver(schema)}
+    />
   );
 };
 
