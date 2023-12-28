@@ -26,7 +26,7 @@ yarn add git+https://github.com/mithya-team/react-form-plugin.git
 
 ## Usage
 
-Integrating and utilizing the `GenericForm` component in your React application is straightforward. Follow these steps to render and manage forms dynamically.
+Integrating and utilizing the `ReactForm` component in your React application is straightforward. Follow these steps to render and manage forms dynamically.
 
 ### Basic Form Setup
 
@@ -34,11 +34,11 @@ Here's a basic example to get you started:
 
 ```tsx
 import React from "react";
-import { GenericForm } from "react-form-plugin";
+import { ReactForm } from "react-form-plugin";
 
 const MyForm = () => {
   const fieldsInput = [
-    { inputType: "text", name: "name", label: "Name" },
+    { type: "text", name: "name", label: "Name" },
     // ...add other field configurations
   ];
 
@@ -47,17 +47,139 @@ const MyForm = () => {
     console.log(data);
   };
 
-  return <GenericForm fieldsInput={fieldsInput} onSubmit={onSubmit} />;
+  return <ReactForm fieldsInput={fieldsInput} onSubmit={onSubmit} />;
 };
 
 export default MyForm;
 ```
 
+### Validation
+
+Example showing validation with zod
+
+```tsx
+import React, { useState } from "react";
+import { FieldInput, ReactForm } from "react-form-plugin";
+// import validation library
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+// Define the validation schema using Zod
+const schema = z.object({
+  name: z.string().min(1, "Name is required"),
+  emailId: z.string().email("Invalid email format").min(1, "Email is required"),
+  gender: z.enum(["male", "female", "trans"], {
+    required_error: "Gender is required",
+  }),
+});
+
+// Define the form fields
+const fieldsInput: FieldInput[] = [
+  { type: "text", name: "name", label: "Name", defaultValue: "Ram" },
+  { type: "email", name: "emailId", label: "Email ID" },
+  {
+    type: "radio",
+    name: "gender",
+    label: "Gender",
+    options: [
+      { value: "male", label: "Male" },
+      { value: "female", label: "Female" },
+      { value: "trans", label: "Transgender" },
+    ],
+  },
+];
+
+const UserDetailsForm: React.FC = () => {
+  const onSubmit = (data: any) => console.log(data);
+
+  return (
+    <div>
+      <ReactForm
+        fieldsInput={fieldsInput}
+        onSubmit={onSubmit}
+        resolver={zodResolver(schema)}
+      />
+      <button onClick={logFormValues}>Log Form Values</button>
+    </div>
+  );
+};
+
+export default UserDetailsForm;
+```
+
+### Conditional Update
+
+Use conditions to update the field props
+
+```tsx
+import React from "react";
+import { FieldInput, ReactForm } from "react-form-plugin";
+
+// Define the form fields
+const fieldsInput: FieldInput[] = [
+  {
+    type: "radio",
+    name: "gender",
+    label: "Gender",
+    options: [
+      { value: "male", label: "Male" },
+      { value: "female", label: "Female" },
+      { value: "trans", label: "Transgender" },
+    ],
+  },
+  {
+    type: "select",
+    name: "favouritePokemon",
+    label: "Favourite Pokemon",
+    options: [
+      { value: "pik", label: "Pikachu" },
+      { value: "char", label: "Charmander" },
+      { value: "saiduck", label: "Saiduck" },
+    ],
+    inputProps: { disabled: true },
+    conditions: [
+      {
+        when: (formValues) => {
+          return formValues["gender"] === "male";
+        },
+        then: () => {
+          return { inputProps: { disabled: false } };
+        },
+      },
+    ],
+  },
+];
+
+const UserDetailsForm: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit = (data: any) => console.log(data);
+
+  return (
+    <div>
+      <ReactForm fields={fieldsInput} onSubmit={onSubmit} />
+    </div>
+  );
+};
+
+export default UserDetailsForm;
+```
+
+### Extending Custom Input Types
+
+Add custom input types by extending the input component map:
+
+```tsx
+import { addtype } from "react-form-plugin";
+import MyCustomInput from "./MyCustomInput";
+
+addtype("myCustom", MyCustomInput);
+```
+
 ## API Reference
 
-Below is the API reference for the GenericForm component and its associated input types.
+Below is the API reference for the ReactForm component and its associated input types.
 
-### GenericForm
+### ReactForm
 
 A flexible and dynamic form component that renders based on provided field configurations.
 
@@ -75,80 +197,13 @@ Defines how each field in the form should be rendered and behave.
 
 #### Properties
 
-- inputType: Defines the type of input (e.g., 'text', 'checkbox', 'radio').
+- type: Defines the type of input (e.g., 'text', 'checkbox', 'radio').
 - name: A unique identifier for the form field.
   label (optional): Display label for the form field.
 
 Additional properties for validation, aria attributes, and other custom behaviors.
 
-### Extending Custom Input Types
-
-Add custom input types by extending the input component map:
-
-```tsx
-import { addInputType } from "react-form-plugin";
-import MyCustomInput from "./MyCustomInput";
-
-addInputType("myCustom", MyCustomInput);
-```
-
-### Resolver Demo
-
-Example showing validation with zod
-
-```tsx
-import React, { useState } from "react";
-import { FieldInput, GenericForm } from "../../lib";
-// import validation library
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
-// Define the validation schema using Zod
-const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  emailId: z.string().email("Invalid email format").min(1, "Email is required"),
-  gender: z.enum(["male", "female", "trans"], {
-    required_error: "Gender is required",
-  }),
-});
-
-// Define the form fields
-const fieldsInput: FieldInput[] = [
-  { inputType: "text", name: "name", label: "Name", defaultValue: "Ram" },
-  { inputType: "email", name: "emailId", label: "Email ID" },
-  {
-    inputType: "radio",
-    name: "gender",
-    label: "Gender",
-    options: [
-      { value: "male", label: "Male" },
-      { value: "female", label: "Female" },
-      { value: "trans", label: "Transgender" },
-    ],
-  },
-];
-
-const UserDetailsForm: React.FC = () => {
-  const onSubmit = (data: any) => console.log(data);
-
-  return (
-    <div>
-      <GenericForm
-        fieldsInput={fieldsInput}
-        onSubmit={onSubmit}
-        resolver={zodResolver(schema)}
-      />
-      <button onClick={logFormValues}>Log Form Values</button>
-    </div>
-  );
-};
-
-export default UserDetailsForm;
-```
-
-### Adding File type config
-
-### Resolver Demo
+### File config example
 
 ```tsx
 import { FieldInput } from "../../lib";
@@ -169,7 +224,7 @@ const fieldsInput: FieldInput[] = [
 ];
 ```
 
-### Adding date and time config
+### date and time config example
 
 ### Resolver Demo
 

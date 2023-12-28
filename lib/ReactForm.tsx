@@ -12,25 +12,25 @@ import { FieldInput } from "./@types";
 import { getDefaultValueObject } from "./utils";
 import { evaluateConditions } from "./utils/form";
 
-interface GenericFormProps<TFieldValues extends FieldValues> {
-  fieldsInput: FieldInput[];
+interface ReactFormProps<TFieldValues extends FieldValues> {
+  fields: FieldInput[];
   onSubmit: SubmitHandler<TFieldValues>;
-  resolver: Resolver<TFieldValues>; // Resolver from react-hook-form
+  validation: Resolver<TFieldValues>; // Resolver from react-hook-form
   classes?: Record<string, string>; // Object for CSS classes
   onGetValues?: (getValuesFunction: () => object) => void; // Callback function to expose getValues
 }
 
-const GenericForm = <TFieldValues extends FieldValues>({
-  fieldsInput,
+const ReactForm = <TFieldValues extends FieldValues>({
+  fields,
   onSubmit,
-  resolver,
+  validation,
   classes,
-}: GenericFormProps<TFieldValues>): React.ReactNode => {
+}: ReactFormProps<TFieldValues>): React.ReactNode => {
   const defaultValues = getDefaultValueObject(
-    fieldsInput
+    fields
   ) as DefaultValues<TFieldValues>;
   const methods = useForm<TFieldValues>({
-    resolver: resolver,
+    resolver: validation,
     defaultValues: defaultValues,
   });
 
@@ -42,20 +42,32 @@ const GenericForm = <TFieldValues extends FieldValues>({
         onSubmit={methods.handleSubmit(onSubmit)}
         className={classes?.formContainer}
       >
-        {fieldsInput.map((field, index) => {
-          const updatedField = evaluateConditions(formValues, field);
+        {fields.map((field, index) => {
+          const {
+            name,
+            label,
+            type,
+            options = [],
+            validation,
+            classes,
+            hide = false,
+            inputProps,
+            ...rest
+          } = evaluateConditions(formValues, field);
 
-          if (updatedField?.hide) return null;
+          if (hide) return null;
 
           return (
             <DynamicInput
               key={index}
-              inputType={updatedField.inputType}
-              name={updatedField.name}
-              label={updatedField.label}
-              options={updatedField?.options}
-              validation={updatedField.validation}
-              classes={updatedField?.classes}
+              {...rest}
+              type={type}
+              name={name}
+              label={label}
+              options={options}
+              validation={validation}
+              classes={classes}
+              inputProps={inputProps}
             />
           );
         })}
@@ -67,4 +79,4 @@ const GenericForm = <TFieldValues extends FieldValues>({
   );
 };
 
-export default GenericForm;
+export default ReactForm;

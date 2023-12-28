@@ -1,7 +1,8 @@
 // RadioInput.tsx
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
 import { Option } from "../@types";
+import ErrorField from "./Error";
 
 interface RadioInputProps {
   name: string;
@@ -11,41 +12,45 @@ interface RadioInputProps {
     radio?: string;
     label?: string;
     error?: string;
-  }; // Object of classes
+  };
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
 
 const RadioInput: React.FC<RadioInputProps> = ({
   name,
   options,
   classes,
+  inputProps,
   ...rest
 }) => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
+  const id = `form-${name}`;
   return (
     <>
       {options.map((option, index) => (
         <div key={index} className={classes?.container}>
           <input
-            id={`form-${name}-${index}`}
+            id={`${id}-${index}`}
             {...register(name)}
+            {...rest}
             type="radio"
+            {...inputProps}
             value={option.value}
             className={classes?.radio}
-            {...rest}
           />
-          <label htmlFor={`form-${name}-${index}`} className={classes?.label}>
+          <label htmlFor={`${id}-${index}`} className={classes?.label}>
             {option.label}
           </label>
         </div>
       ))}
-      {errors[name] && (
-        <span className={classes?.error}>
-          {errors[name]?.message as string}
-        </span>
-      )}
+      <ErrorField
+        id={`${id}-error`}
+        className={classes?.error}
+        error={errors[name]}
+      />
     </>
   );
 };

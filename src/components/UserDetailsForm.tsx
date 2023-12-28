@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldInput, GenericForm } from "../../lib";
+import { FieldInput, ReactForm } from "../../lib";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -30,18 +30,24 @@ const schema = z.object({
 
 // Define the form fields
 const fieldsInput: FieldInput[] = [
-  { inputType: "text", name: "name", label: "Name", defaultValue: "Ram" },
   {
-    inputType: "text",
+    type: "text",
+    name: "name",
+    label: "Name",
+    defaultValue: "Ram",
+    inputProps: { disabled: true },
+  },
+  {
+    type: "text",
     name: "address",
     label: "Address",
     defaultValue: "8, Dasrath Palace, Ayodhya",
   },
-  { inputType: "email", name: "emailId", label: "Email ID" },
-  { inputType: "mobile", name: "mobileNumber", label: "Mobile Number" },
-  { inputType: "tel", name: "phoneNumber", label: "Phone Number" },
+  { type: "email", name: "emailId", label: "Email ID" },
+  { type: "mobile", name: "mobileNumber", label: "Mobile Number" },
+  { type: "tel", name: "phoneNumber", label: "Phone Number" },
   {
-    inputType: "radio",
+    type: "radio",
     name: "gender",
     label: "Gender",
     options: [
@@ -51,7 +57,7 @@ const fieldsInput: FieldInput[] = [
     ],
   },
   {
-    inputType: "checkbox",
+    type: "checkbox",
     name: "favouriteDish",
     label: "Favourite Dish",
     options: [
@@ -72,7 +78,7 @@ const fieldsInput: FieldInput[] = [
     ],
   },
   {
-    inputType: "select",
+    type: "select",
     name: "favouritePokemon",
     label: "Favourite Pokemon",
     options: [
@@ -80,45 +86,45 @@ const fieldsInput: FieldInput[] = [
       { value: "char", label: "Charmander" },
       { value: "saiduck", label: "Saiduck" },
     ],
-    hide: true,
+    hide: false,
+    inputProps: { disabled: true },
     conditions: [
       {
         when: (formValues) => {
           return formValues["gender"] === "male";
         },
         then: () => {
-          return { hide: false };
+          return { hide: false, inputProps: { disabled: false } };
         },
       },
     ],
   },
   {
-    inputType: "switch",
+    type: "switch",
     name: "preferredTheme",
     label: "Dark Theme",
     defaultValue: true,
   },
   {
-    inputType: "time",
+    type: "time",
     name: "time",
     label: "Time",
     defaultValue: true,
   },
 
   {
-    inputType: "date",
+    type: "date",
     name: "date",
     label: "Date",
     defaultValue: true,
   },
   {
-    inputType: "file",
+    type: "file",
     name: "file",
     label: "file",
   },
 ];
 
-// UserDetailsForm Component
 const UserDetailsForm: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
@@ -126,11 +132,13 @@ const UserDetailsForm: React.FC = () => {
   };
 
   return (
-    <GenericForm
-      fieldsInput={fieldsInput}
-      onSubmit={onSubmit}
-      resolver={zodResolver(schema)}
-    />
+    <div>
+      <ReactForm
+        fields={fieldsInput}
+        onSubmit={onSubmit}
+        validation={zodResolver(schema)}
+      />
+    </div>
   );
 };
 

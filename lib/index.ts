@@ -1,5 +1,5 @@
 import { FieldInput } from "./@types";
-import GenericForm from "./GenericForm";
+import ReactForm from "./ReactForm";
 import {
   addInputType,
   getInputComponent,
@@ -8,5 +8,5 @@ import SwitchInput from "./components/SwitchInput";
 
 addInputType("switch", SwitchInput);
 
-export { GenericForm, addInputType, getInputComponent };
+export { ReactForm, addInputType, getInputComponent };
 export type { FieldInput };

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
 import { Option } from "../@types";
+import ErrorField from "./Error";
 
 interface SelectInputProps {
   name: string;
@@ -14,6 +15,7 @@ interface SelectInputProps {
     option?: string;
     error?: string;
   };
+  inputProps?: InputHTMLAttributes<HTMLSelectElement>;
 }
 
 const SelectInput: React.FC<SelectInputProps> = ({
@@ -22,6 +24,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   label,
   validation,
   classes,
+  inputProps,
   ...rest
 }) => {
   const {
@@ -41,6 +44,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
         {...register(name, validation)}
         className={classes?.select}
         {...rest}
+        {...inputProps}
         aria-invalid={errors[name] ? "true" : "false"}
         aria-describedby={`${id}-error`}
       >
@@ -50,11 +54,11 @@ const SelectInput: React.FC<SelectInputProps> = ({
           </option>
         ))}
       </select>
-      {errors[name] && (
-        <span id={`${id}-error`} className={classes?.error}>
-          {errors[name]?.message as string}
-        </span>
-      )}
+      <ErrorField
+        id={`${id}-error`}
+        className={classes?.error}
+        error={errors[name]}
+      />
     </div>
   );
 };
