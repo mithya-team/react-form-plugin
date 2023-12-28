@@ -53,13 +53,13 @@ const MyForm = () => {
 export default MyForm;
 ```
 
-### With Validation
+### Validation
 
 Example showing validation with zod
 
 ```tsx
 import React, { useState } from "react";
-import { FieldInput, ReactForm } from "../../lib";
+import { FieldInput, ReactForm } from "react-form-plugin";
 // import validation library
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -107,6 +107,74 @@ const UserDetailsForm: React.FC = () => {
 export default UserDetailsForm;
 ```
 
+### Conditional Update
+
+Use conditions to update the field props
+
+```tsx
+import React from "react";
+import { FieldInput, ReactForm } from "react-form-plugin";
+
+// Define the form fields
+const fieldsInput: FieldInput[] = [
+  {
+    type: "radio",
+    name: "gender",
+    label: "Gender",
+    options: [
+      { value: "male", label: "Male" },
+      { value: "female", label: "Female" },
+      { value: "trans", label: "Transgender" },
+    ],
+  },
+  {
+    type: "select",
+    name: "favouritePokemon",
+    label: "Favourite Pokemon",
+    options: [
+      { value: "pik", label: "Pikachu" },
+      { value: "char", label: "Charmander" },
+      { value: "saiduck", label: "Saiduck" },
+    ],
+    inputProps: { disabled: true },
+    conditions: [
+      {
+        when: (formValues) => {
+          return formValues["gender"] === "male";
+        },
+        then: () => {
+          return { inputProps: { disabled: false } };
+        },
+      },
+    ],
+  },
+];
+
+const UserDetailsForm: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit = (data: any) => console.log(data);
+
+  return (
+    <div>
+      <ReactForm fields={fieldsInput} onSubmit={onSubmit} />
+    </div>
+  );
+};
+
+export default UserDetailsForm;
+```
+
+### Extending Custom Input Types
+
+Add custom input types by extending the input component map:
+
+```tsx
+import { addtype } from "react-form-plugin";
+import MyCustomInput from "./MyCustomInput";
+
+addtype("myCustom", MyCustomInput);
+```
+
 ## API Reference
 
 Below is the API reference for the ReactForm component and its associated input types.
@@ -134,14 +202,3 @@ Defines how each field in the form should be rendered and behave.
   label (optional): Display label for the form field.
 
 Additional properties for validation, aria attributes, and other custom behaviors.
-
-### Extending Custom Input Types
-
-Add custom input types by extending the input component map:
-
-```tsx
-import { addtype } from "react-form-plugin";
-import MyCustomInput from "./MyCustomInput";
-
-addtype("myCustom", MyCustomInput);
-```

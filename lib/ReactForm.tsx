@@ -43,19 +43,31 @@ const ReactForm = <TFieldValues extends FieldValues>({
         className={classes?.formContainer}
       >
         {fields.map((field, index) => {
-          const updatedField = evaluateConditions(formValues, field);
+          const {
+            name,
+            label,
+            type,
+            options = [],
+            validation,
+            classes,
+            hide = false,
+            inputProps,
+            ...rest
+          } = evaluateConditions(formValues, field);
 
-          if (updatedField?.hide) return null;
+          if (hide) return null;
 
           return (
             <DynamicInput
               key={index}
-              type={updatedField.type}
-              name={updatedField.name}
-              label={updatedField.label}
-              options={updatedField?.options}
-              validation={updatedField.validation}
-              classes={updatedField?.classes}
+              {...rest}
+              type={type}
+              name={name}
+              label={label}
+              options={options}
+              validation={validation}
+              classes={classes}
+              inputProps={inputProps}
             />
           );
         })}

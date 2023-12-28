@@ -1,5 +1,5 @@
 // SwitchInput.tsx
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import "./SwitchInput.css";
 
@@ -17,12 +17,14 @@ interface SwitchInputProps {
     activeSwitch?: string;
     activeButton?: string;
   };
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
 
 const SwitchInput: React.FC<SwitchInputProps> = ({
   name,
   classes,
   label,
+  inputProps,
   ...rest
 }) => {
   const { control } = useFormContext();
@@ -52,6 +54,7 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
               ref={ref}
               className={`d-switch-input ${classes?.input ?? ""}`}
               {...rest}
+              {...inputProps}
               checked={value === true ? true : false}
               type="checkbox"
               aria-checked={value ? "true" : "false"} // Dynamically update aria-checked

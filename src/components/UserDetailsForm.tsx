@@ -27,7 +27,13 @@ const schema = z.object({
 
 // Define the form fields
 const fieldsInput: FieldInput[] = [
-  { type: "text", name: "name", label: "Name", defaultValue: "Ram" },
+  {
+    type: "text",
+    name: "name",
+    label: "Name",
+    defaultValue: "Ram",
+    inputProps: { disabled: true },
+  },
   {
     type: "text",
     name: "address",
@@ -77,14 +83,15 @@ const fieldsInput: FieldInput[] = [
       { value: "char", label: "Charmander" },
       { value: "saiduck", label: "Saiduck" },
     ],
-    hide: true,
+    hide: false,
+    inputProps: { disabled: true },
     conditions: [
       {
         when: (formValues) => {
           return formValues["gender"] === "male";
         },
         then: () => {
-          return { hide: false };
+          return { hide: false, inputProps: { disabled: false } };
         },
       },
     ],
@@ -97,7 +104,6 @@ const fieldsInput: FieldInput[] = [
   },
 ];
 
-// UserDetailsForm Component
 const UserDetailsForm: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => console.log(data);
