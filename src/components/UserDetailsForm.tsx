@@ -23,6 +23,9 @@ const schema = z.object({
     })
     .optional(), // mark the field as optional if conditional rendering is applied
   preferredTheme: z.boolean({ invalid_type_error: "value should be boolean" }),
+  time: z.string(),
+  date: z.string(),
+  file: z.any().refine((files) => files?.length == 1, "Image is required."),
 });
 
 // Define the form fields
@@ -95,21 +98,39 @@ const fieldsInput: FieldInput[] = [
     label: "Dark Theme",
     defaultValue: true,
   },
+  {
+    inputType: "time",
+    name: "time",
+    label: "Time",
+    defaultValue: true,
+  },
+
+  {
+    inputType: "date",
+    name: "date",
+    label: "Date",
+    defaultValue: true,
+  },
+  {
+    inputType: "file",
+    name: "file",
+    label: "file",
+  },
 ];
 
 // UserDetailsForm Component
 const UserDetailsForm: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
 
   return (
-    <div>
-      <GenericForm
-        fieldsInput={fieldsInput}
-        onSubmit={onSubmit}
-        resolver={zodResolver(schema)}
-      />
-    </div>
+    <GenericForm
+      fieldsInput={fieldsInput}
+      onSubmit={onSubmit}
+      resolver={zodResolver(schema)}
+    />
   );
 };
 

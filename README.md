@@ -145,3 +145,58 @@ const UserDetailsForm: React.FC = () => {
 
 export default UserDetailsForm;
 ```
+
+### Adding File type config
+
+### Resolver Demo
+
+```tsx
+import { FieldInput } from "../../lib";
+import { z } from "zod";
+
+// Define the validation schema using Zod
+const schema = z.object({
+  file: z.any().refine((files) => files?.length == 1, "Image is required."),
+});
+
+// Define the form fields
+const fieldsInput: FieldInput[] = [
+  {
+    inputType: "file",
+    name: "file",
+    label: "file",
+  },
+];
+```
+
+### Adding date and time config
+
+### Resolver Demo
+
+```tsx
+import { FieldInput } from "../../lib";
+import { z } from "zod";
+
+// Define the validation schema using Zod
+const schema = z.object({
+  time: z.string(),
+  date: z.string(),
+});
+
+// Define the form fields
+const fieldsInput: FieldInput[] = [
+  {
+    inputType: "time",
+    name: "time",
+    label: "Time",
+    defaultValue: true,
+  },
+
+  {
+    inputType: "date",
+    name: "date",
+    label: "Date",
+    defaultValue: true,
+  },
+];
+```
