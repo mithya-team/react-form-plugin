@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldInput, GenericForm } from "../../lib";
+import { FieldInput, ReactForm } from "../../lib";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -27,18 +27,18 @@ const schema = z.object({
 
 // Define the form fields
 const fieldsInput: FieldInput[] = [
-  { inputType: "text", name: "name", label: "Name", defaultValue: "Ram" },
+  { type: "text", name: "name", label: "Name", defaultValue: "Ram" },
   {
-    inputType: "text",
+    type: "text",
     name: "address",
     label: "Address",
     defaultValue: "8, Dasrath Palace, Ayodhya",
   },
-  { inputType: "email", name: "emailId", label: "Email ID" },
-  { inputType: "mobile", name: "mobileNumber", label: "Mobile Number" },
-  { inputType: "tel", name: "phoneNumber", label: "Phone Number" },
+  { type: "email", name: "emailId", label: "Email ID" },
+  { type: "mobile", name: "mobileNumber", label: "Mobile Number" },
+  { type: "tel", name: "phoneNumber", label: "Phone Number" },
   {
-    inputType: "radio",
+    type: "radio",
     name: "gender",
     label: "Gender",
     options: [
@@ -48,7 +48,7 @@ const fieldsInput: FieldInput[] = [
     ],
   },
   {
-    inputType: "checkbox",
+    type: "checkbox",
     name: "favouriteDish",
     label: "Favourite Dish",
     options: [
@@ -69,7 +69,7 @@ const fieldsInput: FieldInput[] = [
     ],
   },
   {
-    inputType: "select",
+    type: "select",
     name: "favouritePokemon",
     label: "Favourite Pokemon",
     options: [
@@ -90,7 +90,7 @@ const fieldsInput: FieldInput[] = [
     ],
   },
   {
-    inputType: "switch",
+    type: "switch",
     name: "preferredTheme",
     label: "Dark Theme",
     defaultValue: true,
@@ -104,10 +104,10 @@ const UserDetailsForm: React.FC = () => {
 
   return (
     <div>
-      <GenericForm
-        fieldsInput={fieldsInput}
+      <ReactForm
+        fields={fieldsInput}
         onSubmit={onSubmit}
-        resolver={zodResolver(schema)}
+        validation={zodResolver(schema)}
       />
     </div>
   );

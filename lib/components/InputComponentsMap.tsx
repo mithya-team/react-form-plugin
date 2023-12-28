@@ -38,6 +38,6 @@ export const getInputComponent = (type: string): React.FC<any> | undefined => {
   return InputComponentMap[type];
 };
 
-export const listRegisteredInputTypes = () => {
+export const listRegisteredtypes = () => {
   return Object.keys(InputComponentMap);
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { Option } from "../@types";
+import ErrorField from "./Error";
 
 interface SelectInputProps {
   name: string;
@@ -50,11 +51,11 @@ const SelectInput: React.FC<SelectInputProps> = ({
           </option>
         ))}
       </select>
-      {errors[name] && (
-        <span id={`${id}-error`} className={classes?.error}>
-          {errors[name]?.message as string}
-        </span>
-      )}
+      <ErrorField
+        id={`${id}-error`}
+        className={classes?.error}
+        error={errors[name]}
+      />
     </div>
   );
 };

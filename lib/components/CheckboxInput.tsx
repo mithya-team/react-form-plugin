@@ -2,6 +2,7 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { Option } from "../@types";
+import ErrorField from "./Error";
 
 interface CheckboxInputProps {
   name: string;
@@ -24,28 +25,29 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
     register,
     formState: { errors },
   } = useFormContext();
+  const id = `form-${name}`;
   return (
     <>
       {options.map((option, index) => (
         <div key={index} className={classes?.container}>
           <input
-            id={`form-${name}-${index}`}
+            id={`${id}-${index}`}
             {...register(name)}
+            {...rest}
             type="checkbox"
             value={option.value}
             className={classes?.checkbox}
-            {...rest}
           />
-          <label htmlFor={`form-${name}-${index}`} className={classes?.label}>
+          <label htmlFor={`${id}-${index}`} className={classes?.label}>
             {option.label}
           </label>
         </div>
       ))}
-      {errors[name] && (
-        <span className={classes?.error}>
-          {errors[name]?.message as string}
-        </span>
-      )}
+      <ErrorField
+        id={`${id}-error`}
+        className={classes?.error}
+        error={errors[name]}
+      />
     </>
   );
 };

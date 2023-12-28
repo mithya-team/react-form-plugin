@@ -1,6 +1,7 @@
 // BasicInput.tsx
 import React from "react";
 import { useFormContext } from "react-hook-form";
+import ErrorField from "./Error";
 
 interface BasicInputProps {
   type: string;
@@ -44,11 +45,11 @@ const BasicInput: React.FC<BasicInputProps> = ({
         aria-invalid={errors[name] ? "true" : "false"}
         aria-describedby={`${id}-error`}
       />
-      {errors[name] && (
-        <span id={`${id}-error`} className={classes?.error}>
-          {errors[name]?.message as string}
-        </span>
-      )}
+      <ErrorField
+        id={`${id}-error`}
+        className={classes?.error}
+        error={errors?.[name]}
+      />
     </div>
   );
 };

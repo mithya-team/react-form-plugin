@@ -12,7 +12,7 @@ var xr = { exports: {} }, Be = {};
  */
 var Pr;
 function ht() {
-  return Pr || (Pr = 1, process.env.NODE_ENV !== "production" && function() {
+  return Pr || (Pr = 1, process.env.NODE_ENV !== "production" && function () {
     var e = j, a = Symbol.for("react.element"), r = Symbol.for("react.portal"), n = Symbol.for("react.fragment"), s = Symbol.for("react.strict_mode"), o = Symbol.for("react.profiler"), f = Symbol.for("react.provider"), _ = Symbol.for("react.context"), v = Symbol.for("react.forward_ref"), x = Symbol.for("react.suspense"), R = Symbol.for("react.suspense_list"), S = Symbol.for("react.memo"), E = Symbol.for("react.lazy"), H = Symbol.for("react.offscreen"), Y = Symbol.iterator, je = "@@iterator";
     function Re(t) {
       if (t === null || typeof t != "object")
@@ -32,7 +32,7 @@ function ht() {
       {
         var w = se.ReactDebugCurrentFrame, O = w.getStackAddendum();
         O !== "" && (c += "%s", g = g.concat([O]));
-        var P = g.map(function(C) {
+        var P = g.map(function (C) {
           return String(C);
         });
         P.unshift("Warning: " + c), Function.prototype.apply.call(console[t], console, P);
@@ -42,10 +42,10 @@ function ht() {
     le = Symbol.for("react.module.reference");
     function X(t) {
       return !!(typeof t == "string" || typeof t == "function" || t === n || t === o || me || t === s || t === x || t === R || _e || t === H || ne || U || Se || typeof t == "object" && t !== null && (t.$$typeof === E || t.$$typeof === S || t.$$typeof === f || t.$$typeof === _ || t.$$typeof === v || // This needs to include all possible module reference object
-      // types supported by any Flight configuration anywhere since
-      // we don't know which Flight build this will end up being used
-      // with.
-      t.$$typeof === le || t.getModuleId !== void 0));
+        // types supported by any Flight configuration anywhere since
+        // we don't know which Flight build this will end up being used
+        // with.
+        t.$$typeof === le || t.getModuleId !== void 0));
     }
     function Fe(t, c, g) {
       var w = t.displayName;
@@ -199,11 +199,11 @@ function ht() {
       P = Ae.current, Ae.current = null, Ke();
       try {
         if (c) {
-          var C = function() {
+          var C = function () {
             throw Error();
           };
           if (Object.defineProperty(C.prototype, "props", {
-            set: function() {
+            set: function () {
               throw Error();
             }
           }), typeof Reflect == "object" && Reflect.construct) {
@@ -233,7 +233,7 @@ function ht() {
         if (ce && w && typeof ce.stack == "string") {
           for (var A = ce.stack.split(`
 `), G = w.stack.split(`
-`), $ = A.length - 1, B = G.length - 1; $ >= 1 && B >= 0 && A[$] !== G[B]; )
+`), $ = A.length - 1, B = G.length - 1; $ >= 1 && B >= 0 && A[$] !== G[B];)
             B--;
           for (; $ >= 1 && B >= 0; $--, B--)
             if (A[$] !== G[B]) {
@@ -372,7 +372,7 @@ function ht() {
     }
     function Qe(t, c) {
       {
-        var g = function() {
+        var g = function () {
           Q || (Q = !0, p("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", c));
         };
         g.isReactWarning = !0, Object.defineProperty(t, "key", {
@@ -383,7 +383,7 @@ function ht() {
     }
     function vr(t, c) {
       {
-        var g = function() {
+        var g = function () {
           fe || (fe = !0, p("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", c));
         };
         g.isReactWarning = !0, Object.defineProperty(t, "ref", {
@@ -392,7 +392,7 @@ function ht() {
         });
       }
     }
-    var er = function(t, c, g, w, O, P, C) {
+    var er = function (t, c, g, w, O, P, C) {
       var A = {
         // This tag allows us to uniquely identify this as a React Element
         $$typeof: a,
@@ -515,7 +515,7 @@ Check the top-level render call using <` + g + ">.");
         else if (t) {
           var O = Re(t);
           if (typeof O == "function" && O !== t.entries)
-            for (var P = O.call(t), C; !(C = P.next()).done; )
+            for (var P = O.call(t), C; !(C = P.next()).done;)
               gr(C.value) && Dr(C.value, c);
         }
       }
@@ -529,8 +529,8 @@ Check the top-level render call using <` + g + ">.");
         if (typeof c == "function")
           g = c.propTypes;
         else if (typeof c == "object" && (c.$$typeof === v || // Note: Memo only checks outer props here.
-        // Inner props are checked in the reconciler.
-        c.$$typeof === S))
+          // Inner props are checked in the reconciler.
+          c.$$typeof === S))
           g = c.propTypes;
         else
           return;
@@ -742,7 +742,7 @@ function xt(e) {
 var Sr = (e) => /^\w*$/.test(e), Qr = (e) => Je(e.replace(/["|']|\]/g, "").split(/\.|\[/)), N = (e, a, r) => {
   let n = -1;
   const s = Sr(a) ? [a] : Qr(a), o = s.length, f = o - 1;
-  for (; ++n < o; ) {
+  for (; ++n < o;) {
     const _ = s[n];
     let v = r;
     if (n !== f) {
@@ -995,7 +995,7 @@ var Te = (e) => W(e) && !ar(e) ? e : {
 function Ft(e, a) {
   const r = a.slice(0, -1).length;
   let n = 0;
-  for (; n < r; )
+  for (; n < r;)
     e = L(e) ? n++ : e[a[n++]];
   return e;
 }
@@ -1096,7 +1096,7 @@ function Yr(e, a, r) {
       name: r
     };
   const s = r.split(".");
-  for (; s.length; ) {
+  for (; s.length;) {
     const o = s.join("."), f = h(a, o), _ = h(e, o);
     if (f && !Array.isArray(f) && r !== o)
       return { name: r };
@@ -1655,22 +1655,24 @@ const qe = ({
     register: f,
     formState: { errors: _ }
   } = be(), v = `form-${a}`;
-  return /* @__PURE__ */ k.jsxs("div", { className: s == null ? void 0 : s.container, children: [
-    r && /* @__PURE__ */ k.jsx("label", { htmlFor: v, className: s == null ? void 0 : s.label, children: r }),
+  return /* @__PURE__ */ k.jsxs("div", {
+    className: s == null ? void 0 : s.container, children: [
+      r && /* @__PURE__ */ k.jsx("label", { htmlFor: v, className: s == null ? void 0 : s.label, children: r }),
     /* @__PURE__ */ k.jsx(
-      "input",
-      {
-        id: v,
-        className: s == null ? void 0 : s.input,
-        ...f(a, n),
-        type: e,
-        ...o,
-        "aria-invalid": _[a] ? "true" : "false",
-        "aria-describedby": `${v}-error`
-      }
-    ),
-    _[a] && /* @__PURE__ */ k.jsx("span", { id: `${v}-error`, className: s == null ? void 0 : s.error, children: (x = _[a]) == null ? void 0 : x.message })
-  ] });
+        "input",
+        {
+          id: v,
+          className: s == null ? void 0 : s.input,
+          ...f(a, n),
+          type: e,
+          ...o,
+          "aria-invalid": _[a] ? "true" : "false",
+          "aria-describedby": `${v}-error`
+        }
+      ),
+      _[a] && /* @__PURE__ */ k.jsx("span", { id: `${v}-error`, className: s == null ? void 0 : s.error, children: (x = _[a]) == null ? void 0 : x.message })
+    ]
+  });
 }, Nt = ({
   name: e,
   options: a,
@@ -1682,23 +1684,27 @@ const qe = ({
     register: s,
     formState: { errors: o }
   } = be();
-  return /* @__PURE__ */ k.jsxs(k.Fragment, { children: [
-    a.map((_, v) => /* @__PURE__ */ k.jsxs("div", { className: r == null ? void 0 : r.container, children: [
+  return /* @__PURE__ */ k.jsxs(k.Fragment, {
+    children: [
+      a.map((_, v) => /* @__PURE__ */ k.jsxs("div", {
+        className: r == null ? void 0 : r.container, children: [
       /* @__PURE__ */ k.jsx(
-        "input",
-        {
-          id: `form-${e}-${v}`,
-          ...s(e),
-          type: "checkbox",
-          value: _.value,
-          className: r == null ? void 0 : r.checkbox,
-          ...n
-        }
-      ),
+          "input",
+          {
+            id: `form-${e}-${v}`,
+            ...s(e),
+            type: "checkbox",
+            value: _.value,
+            className: r == null ? void 0 : r.checkbox,
+            ...n
+          }
+        ),
       /* @__PURE__ */ k.jsx("label", { htmlFor: `form-${e}-${v}`, className: r == null ? void 0 : r.label, children: _.label })
-    ] }, v)),
-    o[e] && /* @__PURE__ */ k.jsx("span", { className: r == null ? void 0 : r.error, children: (f = o[e]) == null ? void 0 : f.message })
-  ] });
+        ]
+      }, v)),
+      o[e] && /* @__PURE__ */ k.jsx("span", { className: r == null ? void 0 : r.error, children: (f = o[e]) == null ? void 0 : f.message })
+    ]
+  });
 }, It = ({
   name: e,
   options: a,
@@ -1710,23 +1716,27 @@ const qe = ({
     register: s,
     formState: { errors: o }
   } = be();
-  return /* @__PURE__ */ k.jsxs(k.Fragment, { children: [
-    a.map((_, v) => /* @__PURE__ */ k.jsxs("div", { className: r == null ? void 0 : r.container, children: [
+  return /* @__PURE__ */ k.jsxs(k.Fragment, {
+    children: [
+      a.map((_, v) => /* @__PURE__ */ k.jsxs("div", {
+        className: r == null ? void 0 : r.container, children: [
       /* @__PURE__ */ k.jsx(
-        "input",
-        {
-          id: `form-${e}-${v}`,
-          ...s(e),
-          type: "radio",
-          value: _.value,
-          className: r == null ? void 0 : r.radio,
-          ...n
-        }
-      ),
+          "input",
+          {
+            id: `form-${e}-${v}`,
+            ...s(e),
+            type: "radio",
+            value: _.value,
+            className: r == null ? void 0 : r.radio,
+            ...n
+          }
+        ),
       /* @__PURE__ */ k.jsx("label", { htmlFor: `form-${e}-${v}`, className: r == null ? void 0 : r.label, children: _.label })
-    ] }, v)),
-    o[e] && /* @__PURE__ */ k.jsx("span", { className: r == null ? void 0 : r.error, children: (f = o[e]) == null ? void 0 : f.message })
-  ] });
+        ]
+      }, v)),
+      o[e] && /* @__PURE__ */ k.jsx("span", { className: r == null ? void 0 : r.error, children: (f = o[e]) == null ? void 0 : f.message })
+    ]
+  });
 }, Lt = ({
   name: e,
   options: a,
@@ -1740,22 +1750,24 @@ const qe = ({
     register: f,
     formState: { errors: _ }
   } = be(), v = `form-${e}`;
-  return /* @__PURE__ */ k.jsxs("div", { className: s == null ? void 0 : s.container, children: [
-    r && /* @__PURE__ */ k.jsx("label", { htmlFor: v, className: s == null ? void 0 : s.label, children: r }),
+  return /* @__PURE__ */ k.jsxs("div", {
+    className: s == null ? void 0 : s.container, children: [
+      r && /* @__PURE__ */ k.jsx("label", { htmlFor: v, className: s == null ? void 0 : s.label, children: r }),
     /* @__PURE__ */ k.jsx(
-      "select",
-      {
-        id: v,
-        ...f(e, n),
-        className: s == null ? void 0 : s.select,
-        ...o,
-        "aria-invalid": _[e] ? "true" : "false",
-        "aria-describedby": `${v}-error`,
-        children: a.map((R, S) => /* @__PURE__ */ k.jsx("option", { value: R.value, className: s == null ? void 0 : s.option, children: R.label }, S))
-      }
-    ),
-    _[e] && /* @__PURE__ */ k.jsx("span", { id: `${v}-error`, className: s == null ? void 0 : s.error, children: (x = _[e]) == null ? void 0 : x.message })
-  ] });
+        "select",
+        {
+          id: v,
+          ...f(e, n),
+          className: s == null ? void 0 : s.select,
+          ...o,
+          "aria-invalid": _[e] ? "true" : "false",
+          "aria-describedby": `${v}-error`,
+          children: a.map((R, S) => /* @__PURE__ */ k.jsx("option", { value: R.value, className: s == null ? void 0 : s.option, children: R.label }, S))
+        }
+      ),
+      _[e] && /* @__PURE__ */ k.jsx("span", { id: `${v}-error`, className: s == null ? void 0 : s.error, children: (x = _[e]) == null ? void 0 : x.message })
+    ]
+  });
 }, Er = {
   text: qe,
   password: qe,
@@ -1768,7 +1780,7 @@ const qe = ({
   e in Er ? console.warn(
     `Input type "${e}" is already registered. Overriding existing component.`
   ) : console.log(`Registering new input type "${e}".`), Er[e] = a;
-}, Ut = (e) => Er[e], Mt = ({ inputType: e, ...a }) => {
+}, Ut = (e) => Er[e], Mt = ({ type: e, ...a }) => {
   const r = Ut(e) || qe;
   return /* @__PURE__ */ k.jsx(r, { type: e, ...a });
 }, Bt = (e = []) => {
@@ -1795,31 +1807,33 @@ const qe = ({
     resolver: r,
     defaultValues: s
   }), f = o.watch();
-  return /* @__PURE__ */ k.jsx(mt, { ...o, children: /* @__PURE__ */ k.jsxs(
-    "form",
-    {
-      onSubmit: o.handleSubmit(a),
-      className: n == null ? void 0 : n.formContainer,
-      children: [
-        e.map((_, v) => {
-          const x = Wt(f, _);
-          return x != null && x.hide ? null : /* @__PURE__ */ k.jsx(
-            Mt,
-            {
-              inputType: x.inputType,
-              name: x.name,
-              label: x.label,
-              options: x == null ? void 0 : x.options,
-              validation: x.validation,
-              classes: x == null ? void 0 : x.classes
-            },
-            v
-          );
-        }),
+  return /* @__PURE__ */ k.jsx(mt, {
+    ...o, children: /* @__PURE__ */ k.jsxs(
+      "form",
+      {
+        onSubmit: o.handleSubmit(a),
+        className: n == null ? void 0 : n.formContainer,
+        children: [
+          e.map((_, v) => {
+            const x = Wt(f, _);
+            return x != null && x.hide ? null : /* @__PURE__ */ k.jsx(
+              Mt,
+              {
+                type: x.type,
+                name: x.name,
+                label: x.label,
+                options: x == null ? void 0 : x.options,
+                validation: x.validation,
+                classes: x == null ? void 0 : x.classes
+              },
+              v
+            );
+          }),
         /* @__PURE__ */ k.jsx("button", { type: "submit", className: n == null ? void 0 : n.submitButton, children: "Submit" })
-      ]
-    }
-  ) });
+        ]
+      }
+    )
+  });
 }, Yt = ({
   name: e,
   classes: a,
@@ -1827,57 +1841,61 @@ const qe = ({
   ...n
 }) => {
   const { control: s } = be(), o = `switch-${e}`;
-  return /* @__PURE__ */ k.jsxs("div", { className: `d-switch-container ${(a == null ? void 0 : a.switchContainer) ?? ""}`, children: [
-    r && /* @__PURE__ */ k.jsx(
-      "label",
-      {
-        htmlFor: o,
-        className: `d-switch-label ${(a == null ? void 0 : a.label) ?? ""}`,
-        children: r
-      }
-    ),
+  return /* @__PURE__ */ k.jsxs("div", {
+    className: `d-switch-container ${(a == null ? void 0 : a.switchContainer) ?? ""}`, children: [
+      r && /* @__PURE__ */ k.jsx(
+        "label",
+        {
+          htmlFor: o,
+          className: `d-switch-label ${(a == null ? void 0 : a.label) ?? ""}`,
+          children: r
+        }
+      ),
     /* @__PURE__ */ k.jsx(
-      wt,
-      {
-        name: e,
-        control: s,
-        render: ({ field: { onChange: f, onBlur: _, value: v = !1, ref: x } }) => /* @__PURE__ */ k.jsxs(k.Fragment, { children: [
+        wt,
+        {
+          name: e,
+          control: s,
+          render: ({ field: { onChange: f, onBlur: _, value: v = !1, ref: x } }) => /* @__PURE__ */ k.jsxs(k.Fragment, {
+            children: [
           /* @__PURE__ */ k.jsx(
-            "input",
-            {
-              id: o,
-              onChange: f,
-              onBlur: _,
-              ref: x,
-              className: `d-switch-input ${(a == null ? void 0 : a.input) ?? ""}`,
-              ...n,
-              checked: v === !0,
-              type: "checkbox",
-              "aria-checked": v ? "true" : "false"
-            }
-          ),
+              "input",
+              {
+                id: o,
+                onChange: f,
+                onBlur: _,
+                ref: x,
+                className: `d-switch-input ${(a == null ? void 0 : a.input) ?? ""}`,
+                ...n,
+                checked: v === !0,
+                type: "checkbox",
+                "aria-checked": v ? "true" : "false"
+              }
+            ),
           /* @__PURE__ */ k.jsx(
-            "label",
-            {
-              htmlFor: o,
-              className: `d-switch ${(a == null ? void 0 : a.switch) ?? ""} ${(a == null ? void 0 : a.activeSwitch) ?? ""}`,
-              children: /* @__PURE__ */ k.jsx(
-                "span",
-                {
-                  role: "button",
-                  className: `d-switch-button ${(a == null ? void 0 : a.button) ?? ""} ${(a == null ? void 0 : a.activeButton) ?? ""}`
-                }
-              )
-            }
-          )
-        ] })
-      }
-    )
-  ] });
+              "label",
+              {
+                htmlFor: o,
+                className: `d-switch ${(a == null ? void 0 : a.switch) ?? ""} ${(a == null ? void 0 : a.activeSwitch) ?? ""}`,
+                children: /* @__PURE__ */ k.jsx(
+                  "span",
+                  {
+                    role: "button",
+                    className: `d-switch-button ${(a == null ? void 0 : a.button) ?? ""} ${(a == null ? void 0 : a.activeButton) ?? ""}`
+                  }
+                )
+              }
+            )
+            ]
+          })
+        }
+      )
+    ]
+  });
 };
 $t("switch", Yt);
 export {
-  Gt as GenericForm,
-  $t as addInputType,
+  Gt as ReactForm,
+  $t as addtype,
   Ut as getInputComponent
 };

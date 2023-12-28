@@ -4,7 +4,7 @@ export type Option = {
 };
 
 export type FieldInput = {
-  inputType: string;
+  type: string;
   name: string;
   label?: string;
   options?: Option[]; // For select, radio, checkbox
