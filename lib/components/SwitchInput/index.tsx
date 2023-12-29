@@ -1,7 +1,8 @@
 // SwitchInput.tsx
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import "./SwitchInput.css";
+import { IInputProps } from "../../@types";
 
 interface SwitchInputProps {
   type: string;
@@ -17,7 +18,7 @@ interface SwitchInputProps {
     activeSwitch?: string;
     activeButton?: string;
   };
-  inputProps?: InputHTMLAttributes<HTMLInputElement>;
+  inputProps?: IInputProps;
 }
 
 const SwitchInput: React.FC<SwitchInputProps> = ({
@@ -31,11 +32,15 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
   const id = `switch-${name}`;
   // TODO: Review css classnames and fix if any
   return (
-    <div className={`d-switch-container ${classes?.switchContainer ?? ""}`}>
+    <div
+      className={`d-switch-container switch-container ${
+        classes?.switchContainer ?? ""
+      }`}
+    >
       {label && (
         <label
           htmlFor={id}
-          className={`d-switch-label ${classes?.label ?? ""}`}
+          className={`d-switch-label switch-root-label ${classes?.label ?? ""}`}
         >
           {label}
         </label>
@@ -52,7 +57,7 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
               onChange={onChange}
               onBlur={onBlur}
               ref={ref}
-              className={`d-switch-input ${classes?.input ?? ""}`}
+              className={`d-switch-input switch-input ${classes?.input ?? ""}`}
               {...rest}
               {...inputProps}
               checked={value === true ? true : false}
@@ -61,15 +66,15 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
             />
             <label
               htmlFor={id}
-              className={`d-switch ${classes?.switch ?? ""} ${
+              className={`d-switch switch-label ${classes?.switch ?? ""} ${
                 classes?.activeSwitch ?? ""
               }`}
             >
               <span
                 role="button"
-                className={`d-switch-button ${classes?.button ?? ""} ${
-                  classes?.activeButton ?? ""
-                }`}
+                className={`d-switch-button switch-button ${
+                  classes?.button ?? ""
+                } ${classes?.activeButton ?? ""}`}
               ></span>
             </label>
           </>

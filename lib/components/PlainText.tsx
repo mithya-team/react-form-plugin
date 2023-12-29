@@ -11,7 +11,10 @@ const PlainText: FC<PlainTextProps> = (props) => {
   return (
     <>
       {typeof text === "string" ? (
-        <div className={className} dangerouslySetInnerHTML={{ __html: text }} />
+        <div
+          className={`pain-text ${className}`}
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
       ) : (
         <>{text}</>
       )}
