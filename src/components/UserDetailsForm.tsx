@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldInput, ReactForm } from "../../lib";
+import { FormFields, ReactForm } from "../../lib";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -29,13 +29,13 @@ const schema = z.object({
 });
 
 // Define the form fields
-const fieldsInput: FieldInput[] = [
+const fieldsInput: FormFields[] = [
   {
     type: "text",
     name: "name",
     label: "Name",
     defaultValue: "Ram",
-    inputProps: { disabled: true},
+    inputProps: { disabled: true },
   },
   {
     type: "text",
@@ -44,7 +44,7 @@ const fieldsInput: FieldInput[] = [
     defaultValue: "8, Dasrath Palace, Ayodhya",
   },
   { type: "email", name: "emailId", label: "Email ID" },
-  { type: "mobile", name: "mobileNumber", label: "Mobile Number" },
+  { type: "text", name: "mobileNumber", label: "Mobile Number" },
   { type: "tel", name: "phoneNumber", label: "Phone Number" },
   {
     type: "radio",
@@ -66,6 +66,7 @@ const fieldsInput: FieldInput[] = [
       { value: "burger", label: "Burger" },
     ],
     hide: true,
+    defaultValue: ["rice"],
     conditions: [
       {
         when: (formValues) => {
@@ -109,14 +110,11 @@ const fieldsInput: FieldInput[] = [
     type: "time",
     name: "time",
     label: "Time",
-    defaultValue: true,
   },
-
   {
     type: "date",
     name: "date",
     label: "Date",
-    defaultValue: true,
   },
   {
     type: "file",

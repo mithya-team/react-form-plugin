@@ -6,7 +6,6 @@ interface ReactFormProps<TFieldValues extends FieldValues> {
     onSubmit: SubmitHandler<TFieldValues>;
     validation: Resolver<TFieldValues>;
     classes?: Record<string, string>;
-    onGetValues?: (getValuesFunction: () => object) => void;
 }
 declare const ReactForm: <TFieldValues extends FieldValues>({ fields, onSubmit, validation, classes, }: ReactFormProps<TFieldValues>) => React.ReactNode;
 export default ReactForm;

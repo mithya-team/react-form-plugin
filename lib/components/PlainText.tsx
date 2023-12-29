@@ -1,9 +1,5 @@
 import { FC } from "react";
-
-export interface PlainTextProps {
-  text?: string | JSX.Element;
-  className?: string;
-}
+import { PlainTextProps } from "../@types";
 
 const PlainText: FC<PlainTextProps> = (props) => {
   const { text, className } = props;

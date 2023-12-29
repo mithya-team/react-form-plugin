@@ -36,8 +36,10 @@ export const addInputType = (type: string, component: React.FC<any>) => {
   InputComponentMap[type] = component;
 };
 
-export const getInputComponent = (type: string): React.FC<any> | undefined => {
-  return InputComponentMap[type];
+export const getInputComponent = (type: string): React.FC<any> => {
+  if (type in InputComponentMap) return InputComponentMap[type];
+
+  return BasicInput;
 };
 
 export const listRegisteredtypes = () => {

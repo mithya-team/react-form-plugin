@@ -2,31 +2,13 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import "./SwitchInput.css";
-import { IInputProps } from "../../@types";
-
-interface SwitchInputProps {
-  type: string;
-  name: string;
-  label?: string;
-  validation?: Record<string, unknown>; // Define more specific type as needed
-  classes?: {
-    switchContainer?: string;
-    label?: string;
-    switch?: string;
-    button?: string;
-    input?: string;
-    activeSwitch?: string;
-    activeButton?: string;
-  };
-  inputProps?: IInputProps;
-}
+import { SwitchInputProps } from "../../@types";
 
 const SwitchInput: React.FC<SwitchInputProps> = ({
   name,
   classes,
   label,
   inputProps,
-  ...rest
 }) => {
   const { control } = useFormContext();
   const id = `switch-${name}`;
@@ -54,12 +36,12 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
           <>
             <input
               id={id}
+              {...inputProps}
+              value={value}
               onChange={onChange}
               onBlur={onBlur}
               ref={ref}
               className={`d-switch-input switch-input ${classes?.input ?? ""}`}
-              {...rest}
-              {...inputProps}
               checked={value === true ? true : false}
               type="checkbox"
               aria-checked={value ? "true" : "false"} // Dynamically update aria-checked

@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes } from "react";
 import { Option } from "../@types";
-interface DynamicInputProps {
+interface IDynamicInputProps {
     type: string;
     name: string;
     label?: string;
@@ -9,5 +9,5 @@ interface DynamicInputProps {
     classes?: Record<string, string>;
     inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
-declare const DynamicInput: React.FC<DynamicInputProps>;
+declare const DynamicInput: React.FC<IDynamicInputProps>;
 export default DynamicInput;

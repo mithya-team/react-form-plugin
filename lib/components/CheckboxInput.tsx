@@ -1,26 +1,15 @@
 // CheckboxInput.tsx
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { IInputProps, Option } from "../@types";
+import { CheckboxInputProps } from "../@types";
 import ErrorField from "./Error";
-
-interface CheckboxInputProps {
-  name: string;
-  options: Option[];
-  classes?: {
-    container?: string;
-    checkbox?: string;
-    label?: string;
-    error?: string;
-  }; // Object of classes
-  inputProps?: IInputProps;
-}
 
 const CheckboxInput: React.FC<CheckboxInputProps> = ({
   name,
   options,
   classes,
   inputProps,
+  label,
   ...rest
 }) => {
   const {
@@ -29,7 +18,15 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <>
+    <div className={`container ${classes?.container ?? ""}`}>
+      {label && (
+        <label
+          htmlFor={id}
+          className={`checkbox-label ${classes?.label ?? ""}`}
+        >
+          {label}
+        </label>
+      )}
       {options.map((option, index) => (
         <div key={index} className={`checkbox-container ${classes?.container}`}>
           <input
@@ -54,7 +51,7 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
         className={classes?.error}
         error={errors[name]}
       />
-    </>
+    </div>
   );
 };
 

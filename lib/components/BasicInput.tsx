@@ -2,28 +2,12 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import ErrorField from "./Error";
-import { IInputProps } from "../@types";
-
-interface BasicInputProps {
-  type: string;
-  name: string;
-  label?: string;
-  validation?: Record<string, unknown>; // Define more specific type as needed
-  classes?: {
-    container?: string;
-    inputContainer?: string;
-    label?: string;
-    input?: string;
-    error?: string;
-  };
-  inputProps?: IInputProps;
-}
+import { BasicInputProps } from "../@types";
 
 const BasicInput: React.FC<BasicInputProps> = ({
   type,
   name,
   label,
-  validation,
   classes,
   inputProps,
   ...rest
@@ -45,7 +29,7 @@ const BasicInput: React.FC<BasicInputProps> = ({
         <input
           id={id}
           className={`input ${classes?.input}`}
-          {...register(name, validation)}
+          {...register(name)}
           type={type}
           {...rest}
           {...inputProps}

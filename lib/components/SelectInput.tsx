@@ -1,28 +1,12 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { IInputProps, Option } from "../@types";
+import { SelectInputProps } from "../@types";
 import ErrorField from "./Error";
-
-interface SelectInputProps {
-  name: string;
-  options: Option[];
-  label?: string;
-  validation?: Record<string, unknown>; // Define more specific type as needed
-  classes?: {
-    container?: string;
-    select?: string;
-    label?: string;
-    option?: string;
-    error?: string;
-  };
-  inputProps?: IInputProps;
-}
 
 const SelectInput: React.FC<SelectInputProps> = ({
   name,
   options,
   label,
-  validation,
   classes,
   inputProps,
   ...rest
@@ -41,7 +25,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
       )}
       <select
         id={id}
-        {...register(name, validation)}
+        {...register(name)}
         className={`select-input ${classes?.select}`}
         {...rest}
         {...inputProps}

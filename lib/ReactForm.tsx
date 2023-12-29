@@ -17,7 +17,6 @@ interface ReactFormProps<TFieldValues extends FieldValues> {
   onSubmit: SubmitHandler<TFieldValues>;
   validation: Resolver<TFieldValues>; // Resolver from react-hook-form
   classes?: Record<string, string>; // Object for CSS classes
-  onGetValues?: (getValuesFunction: () => object) => void; // Callback function to expose getValues
 }
 
 const ReactForm = <TFieldValues extends FieldValues>({
@@ -44,32 +43,15 @@ const ReactForm = <TFieldValues extends FieldValues>({
       >
         {fields.map((field, index) => {
           const {
-            name,
-            label,
             type,
-            options = [],
-            validation,
-            classes,
             hide = false,
-            inputProps,
             ...rest
           } = evaluateConditions(formValues, field);
+          const dynamicInputType = type;
 
           if (hide) return null;
 
-          return (
-            <DynamicInput
-              key={index}
-              {...rest}
-              type={type}
-              name={name}
-              label={label}
-              options={options}
-              validation={validation}
-              classes={classes}
-              inputProps={inputProps}
-            />
-          );
+          return <DynamicInput key={index} {...rest} type={dynamicInputType} />;
         })}
         <button type="submit" className={classes?.submitButton}>
           Submit
