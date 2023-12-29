@@ -11,6 +11,7 @@ interface BasicInputProps {
   validation?: Record<string, unknown>; // Define more specific type as needed
   classes?: {
     container?: string;
+    inputContainer?: string;
     label?: string;
     input?: string;
     error?: string;
@@ -33,13 +34,13 @@ const BasicInput: React.FC<BasicInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <div className={`input-container ${classes?.container ?? ""}`}>
+    <div className={`container ${classes?.container ?? ""}`}>
       {label && (
         <label htmlFor={id} className={`input-label ${classes?.label ?? ""}`}>
           {label}
         </label>
       )}
-      <div>
+      <div className={`input-container ${classes?.inputContainer ?? ""}`}>
         {inputProps?.startAdornment ? inputProps.startAdornment : null}
         <input
           id={id}
