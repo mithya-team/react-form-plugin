@@ -1,5 +1,5 @@
-import React, { InputHTMLAttributes } from "react";
-import { Option } from "../@types";
+import React from "react";
+import { IInputProps, Option } from "../@types";
 interface RadioInputProps {
     name: string;
     options: Option[];
@@ -9,7 +9,7 @@ interface RadioInputProps {
         label?: string;
         error?: string;
     };
-    inputProps?: InputHTMLAttributes<HTMLInputElement>;
+    inputProps?: IInputProps;
 }
 declare const RadioInput: React.FC<RadioInputProps>;
 export default RadioInput;

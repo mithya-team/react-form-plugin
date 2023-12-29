@@ -1,8 +1,12 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, ReactElement } from "react";
 export type Option = {
     value: string;
     label: string;
 };
+export interface IInputProps extends Omit<InputHTMLAttributes<HTMLInputElement | HTMLSelectElement>, "type"> {
+    startAdornment?: ReactElement;
+    endAdornment?: ReactElement;
+}
 export type FieldInput = {
     type: string;
     name: string;
@@ -13,7 +17,8 @@ export type FieldInput = {
     classes?: Record<string, string>;
     hide?: boolean;
     conditions?: FieldConditions[];
-    inputProps?: InputHTMLAttributes<HTMLInputElement>;
+    inputProps?: IInputProps;
+    text?: string;
 };
 export type FieldConditions = {
     when: (formValue: Record<string, unknown>) => boolean;

@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
+import { IInputProps } from "../@types";
 interface BasicInputProps {
     type: string;
     name: string;
@@ -6,11 +7,12 @@ interface BasicInputProps {
     validation?: Record<string, unknown>;
     classes?: {
         container?: string;
+        inputContainer?: string;
         label?: string;
         input?: string;
         error?: string;
     };
-    inputProps?: InputHTMLAttributes<HTMLInputElement>;
+    inputProps?: IInputProps;
 }
 declare const BasicInput: React.FC<BasicInputProps>;
 export default BasicInput;

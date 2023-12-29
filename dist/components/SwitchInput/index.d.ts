@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
+import { IInputProps } from "../../@types";
 interface SwitchInputProps {
     type: string;
     name: string;
@@ -13,7 +14,7 @@ interface SwitchInputProps {
         activeSwitch?: string;
         activeButton?: string;
     };
-    inputProps?: InputHTMLAttributes<HTMLInputElement>;
+    inputProps?: IInputProps;
 }
 declare const SwitchInput: React.FC<SwitchInputProps>;
 export default SwitchInput;
