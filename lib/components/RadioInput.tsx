@@ -1,7 +1,7 @@
 // RadioInput.tsx
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 import { useFormContext } from "react-hook-form";
-import { Option } from "../@types";
+import { IInputProps, Option } from "../@types";
 import ErrorField from "./Error";
 
 interface RadioInputProps {
@@ -13,7 +13,7 @@ interface RadioInputProps {
     label?: string;
     error?: string;
   };
-  inputProps?: InputHTMLAttributes<HTMLInputElement>;
+  inputProps?: IInputProps;
 }
 
 const RadioInput: React.FC<RadioInputProps> = ({
@@ -31,7 +31,10 @@ const RadioInput: React.FC<RadioInputProps> = ({
   return (
     <>
       {options.map((option, index) => (
-        <div key={index} className={classes?.container}>
+        <div
+          key={index}
+          className={`radio-container ${classes?.container ?? ""}`}
+        >
           <input
             id={`${id}-${index}`}
             {...register(name)}
@@ -39,9 +42,12 @@ const RadioInput: React.FC<RadioInputProps> = ({
             type="radio"
             {...inputProps}
             value={option.value}
-            className={classes?.radio}
+            className={`radio-input ${classes?.radio ?? ""}`}
           />
-          <label htmlFor={`${id}-${index}`} className={classes?.label}>
+          <label
+            htmlFor={`${id}-${index}`}
+            className={`radio-label ${classes?.label}`}
+          >
             {option.label}
           </label>
         </div>
