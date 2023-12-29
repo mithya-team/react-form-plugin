@@ -1,6 +1,6 @@
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 import { useFormContext } from "react-hook-form";
-import { Option } from "../@types";
+import { IInputProps, Option } from "../@types";
 import ErrorField from "./Error";
 
 interface SelectInputProps {
@@ -15,7 +15,7 @@ interface SelectInputProps {
     option?: string;
     error?: string;
   };
-  inputProps?: InputHTMLAttributes<HTMLSelectElement>;
+  inputProps?: IInputProps;
 }
 
 const SelectInput: React.FC<SelectInputProps> = ({
@@ -33,23 +33,27 @@ const SelectInput: React.FC<SelectInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <div className={classes?.container}>
+    <div className={`container ${classes?.container ?? ""}`}>
       {label && (
-        <label htmlFor={id} className={classes?.label}>
+        <label htmlFor={id} className={`select-input ${classes?.label ?? ""}`}>
           {label}
         </label>
       )}
       <select
         id={id}
         {...register(name, validation)}
-        className={classes?.select}
+        className={`select-input ${classes?.select}`}
         {...rest}
         {...inputProps}
         aria-invalid={errors[name] ? "true" : "false"}
         aria-describedby={`${id}-error`}
       >
         {options.map((option, index) => (
-          <option value={option.value} key={index} className={classes?.option}>
+          <option
+            value={option.value}
+            key={index}
+            className={`select-option ${classes?.option ?? ""}`}
+          >
             {option.label}
           </option>
         ))}

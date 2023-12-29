@@ -4,6 +4,7 @@ import BasicInput from "./BasicInput";
 import CheckboxInput from "./CheckboxInput";
 import RadioInput from "./RadioInput";
 import SelectInput from "./SelectInput";
+import PlainText from "./PlainText";
 
 // Define the structure of the input component map
 interface IInputComponentsMap {
@@ -19,6 +20,7 @@ const InputComponentMap: IInputComponentsMap = {
   select: SelectInput,
   radio: RadioInput,
   checkbox: CheckboxInput,
+  plainText: PlainText,
 };
 
 export const addInputType = (type: string, component: React.FC<any>) => {
