@@ -1,4 +1,4 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import { Option } from "../@types";
 interface CheckboxInputProps {
     name: string;
@@ -9,6 +9,7 @@ interface CheckboxInputProps {
         label?: string;
         error?: string;
     };
+    inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
 declare const CheckboxInput: React.FC<CheckboxInputProps>;
 export default CheckboxInput;

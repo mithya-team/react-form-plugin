@@ -1,5 +1,5 @@
 import { FieldInput } from "./@types";
 import ReactForm from "./ReactForm";
-import { addtype, getInputComponent } from "./components/InputComponentsMap";
-export { ReactForm, addtype, getInputComponent };
+import { addInputType, getInputComponent } from "./components/InputComponentsMap";
+export { ReactForm, addInputType, getInputComponent };
 export type { FieldInput };

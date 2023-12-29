@@ -1,4 +1,4 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import { Option } from "../@types";
 interface SelectInputProps {
     name: string;
@@ -12,6 +12,7 @@ interface SelectInputProps {
         option?: string;
         error?: string;
     };
+    inputProps?: InputHTMLAttributes<HTMLSelectElement>;
 }
 declare const SelectInput: React.FC<SelectInputProps>;
 export default SelectInput;
