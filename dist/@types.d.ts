@@ -25,6 +25,35 @@ export interface SwitchInputProps {
     inputProps?: IInputProps;
     defaultValue?: boolean;
 }
+export interface CountryPhoneNumberInputProps {
+    name: string;
+    classes?: {
+        root?: string;
+        select?: string;
+        input?: string;
+        inputWrapper?: string;
+        selectWrapper?: string;
+        error?: string;
+        label?: string;
+    };
+    label?: string;
+    inputProps?: IInputProps;
+    selectProps?: IInputProps;
+    defaultValue?: string;
+}
+export interface OtpInputProps {
+    name: string;
+    length: number;
+    label?: string;
+    classes?: {
+        root?: string;
+        input?: string;
+        error?: string;
+        label?: string;
+    };
+    inputProps?: IInputProps;
+    defaultValue?: string;
+}
 export type BasicInputProps = {
     type: `${BasicInputType}`;
     name: string;
