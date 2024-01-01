@@ -26,6 +26,8 @@ const schema = z.object({
   time: z.string(),
   date: z.string(),
   file: z.any().refine((files) => files?.length == 1, "Image is required."),
+  phoneOtp: z.string(),
+  countryPhoneNumber: z.string(),
 });
 
 // Define the form fields
@@ -123,8 +125,17 @@ const fieldsInput: FormFields[] = [
   },
   {
     type: "plainText",
-    name: "plainText",
+    name: "plainHelperText",
     text: "we know each other",
+  },
+  {
+    type: "country-phone-number",
+    name: "countryPhoneNumber",
+  },
+  {
+    type: "otp",
+    name: "phoneOtp",
+    length: 6,
   },
 ];
 
