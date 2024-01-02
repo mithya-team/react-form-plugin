@@ -21,10 +21,7 @@ const BasicInput: React.FC<BasicInputProps> = ({
   return (
     <div className={`d-container rf--container ${classes?.container ?? ""}`}>
       {label && (
-        <label
-          htmlFor={id}
-          className={`rf--input-label ${classes?.label ?? ""}`}
-        >
+        <label htmlFor={id} className={`rf--label ${classes?.label ?? ""}`}>
           {label}
         </label>
       )}

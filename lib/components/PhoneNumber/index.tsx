@@ -37,7 +37,7 @@ const CountryPhoneNumberInput: React.FC<CountryPhoneNumberInputProps> = ({
             {label && (
               <div
                 id={`${id}-label`}
-                className={`rf--phone-otp-input ${classes?.label ?? ""}`}
+                className={`rf--label ${classes?.label ?? ""}`}
               >
                 {label}
               </div>

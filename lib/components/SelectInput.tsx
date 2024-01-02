@@ -19,10 +19,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   return (
     <div className={`rf--container ${classes?.container ?? ""}`}>
       {label && (
-        <label
-          htmlFor={id}
-          className={`rf--select-input ${classes?.label ?? ""}`}
-        >
+        <label htmlFor={id} className={`rf--label ${classes?.label ?? ""}`}>
           {label}
         </label>
       )}
@@ -39,7 +36,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
           <option
             value={option.value}
             key={index}
-            className={`rf--select-option ${classes?.option ?? ""}`}
+            className={`rf--label rf--select-label ${classes?.option ?? ""}`}
           >
             {option.label}
           </option>

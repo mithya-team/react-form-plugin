@@ -21,9 +21,7 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
       {label && (
         <label
           htmlFor={id}
-          className={`d-switch-label rf--switch-root-label ${
-            classes?.label ?? ""
-          }`}
+          className={`d-switch-label rf--label ${classes?.label ?? ""}`}
         >
           {label}
         </label>
@@ -51,9 +49,9 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
             />
             <label
               htmlFor={id}
-              className={`d-switch rf--switch-label ${classes?.switch ?? ""} ${
-                classes?.activeSwitch ?? ""
-              }`}
+              className={`d-switch  rf--label rf--switch-label ${
+                classes?.switch ?? ""
+              } ${classes?.activeSwitch ?? ""}`}
             >
               <span
                 role="button"

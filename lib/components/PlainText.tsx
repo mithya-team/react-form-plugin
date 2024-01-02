@@ -8,7 +8,7 @@ const PlainText: FC<PlainTextProps> = (props) => {
     <>
       {typeof text === "string" ? (
         <div
-          className={`rf--pain-text ${className}`}
+          className={`rf--plain-text ${className}`}
           dangerouslySetInnerHTML={{ __html: text }}
         />
       ) : (

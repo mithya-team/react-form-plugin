@@ -24,10 +24,7 @@ const RadioInput: React.FC<RadioInputProps> = ({
       }`}
     >
       {label && (
-        <label
-          htmlFor={id}
-          className={`rf--radio-label ${classes?.rootLabel ?? ""}`}
-        >
+        <label htmlFor={id} className={`rf--label ${classes?.rootLabel ?? ""}`}>
           {label}
         </label>
       )}
@@ -47,7 +44,7 @@ const RadioInput: React.FC<RadioInputProps> = ({
           />
           <label
             htmlFor={`${id}-${index}`}
-            className={`rf--radio-label ${classes?.label}`}
+            className={`rf-label rf--radio-label ${classes?.label}`}
           >
             {option.label}
           </label>

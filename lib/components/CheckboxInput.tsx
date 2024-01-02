@@ -24,10 +24,7 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
       }`}
     >
       {label && (
-        <label
-          htmlFor={id}
-          className={`rf--checkbox-label ${classes?.label ?? ""}`}
-        >
+        <label htmlFor={id} className={`rf--label ${classes?.label ?? ""}`}>
           {label}
         </label>
       )}
@@ -47,7 +44,7 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
           />
           <label
             htmlFor={`${id}-${index}`}
-            className={`rf--checkbox-label ${classes?.label}`}
+            className={`rf--label rf--checkbox-label ${classes?.label}`}
           >
             {option.label}
           </label>
