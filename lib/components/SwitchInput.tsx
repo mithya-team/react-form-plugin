@@ -1,9 +1,8 @@
 // SwitchInput.tsx
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import "./SwitchInput.css";
-import { SwitchInputProps } from "../../@types";
-
+import { SwitchInputProps } from "../@types";
+import "./index.css";
 const SwitchInput: React.FC<SwitchInputProps> = ({
   name,
   classes,
@@ -15,14 +14,16 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
   // TODO: Review css classnames and fix if any
   return (
     <div
-      className={`d-switch-container switch-container ${
+      className={`d-switch-container rf--switch-container ${
         classes?.switchContainer ?? ""
       }`}
     >
       {label && (
         <label
           htmlFor={id}
-          className={`d-switch-label switch-root-label ${classes?.label ?? ""}`}
+          className={`d-switch-label rf--switch-root-label ${
+            classes?.label ?? ""
+          }`}
         >
           {label}
         </label>
@@ -41,20 +42,22 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
               onChange={onChange}
               onBlur={onBlur}
               ref={ref}
-              className={`d-switch-input switch-input ${classes?.input ?? ""}`}
+              className={`d-switch-input rf--switch-input ${
+                classes?.input ?? ""
+              }`}
               checked={value === true ? true : false}
               type="checkbox"
               aria-checked={value ? "true" : "false"} // Dynamically update aria-checked
             />
             <label
               htmlFor={id}
-              className={`d-switch switch-label ${classes?.switch ?? ""} ${
+              className={`d-switch rf--switch-label ${classes?.switch ?? ""} ${
                 classes?.activeSwitch ?? ""
               }`}
             >
               <span
                 role="button"
-                className={`d-switch-button switch-button ${
+                className={`d-switch-button rf--switch-button ${
                   classes?.button ?? ""
                 } ${classes?.activeButton ?? ""}`}
               ></span>

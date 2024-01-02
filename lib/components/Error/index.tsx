@@ -1,5 +1,6 @@
 import React from "react";
 import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
+import "../index.css";
 
 export interface IErrorProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,7 +16,7 @@ const ErrorField: React.FC<IErrorProps> = ({ error, id, className }) => {
   if (!message) return null;
 
   return (
-    <span id={id} className={`error ${className || ""}`}>
+    <span id={id} className={`d-error rf--error ${className || ""}`}>
       {message}
     </span>
   );

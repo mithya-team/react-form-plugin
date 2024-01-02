@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import ErrorField from "../Error";
 import { OtpInputProps } from "../../@types";
+import "../index.css";
 
 const OtpInput: React.FC<OtpInputProps> = ({
   name,
@@ -45,39 +46,47 @@ const OtpInput: React.FC<OtpInputProps> = ({
         control={control}
         render={({ field: { onChange, onBlur, value = "" } }) => (
           <div
-            className={`phone-otp-input ${classes?.root ?? ""}`}
+            className={`rf--phone-otp-container ${classes?.root ?? ""}`}
             role="group"
             aria-labelledby={`${id}-label`}
           >
             {label && (
               <div
                 id={`${id}-label`}
-                className={`phone-otp-input ${classes?.label ?? ""}`}
+                className={`rf--phone-otp-input ${classes?.label ?? ""}`}
               >
                 {label}
               </div>
             )}
-            {Array.from({ length }).map((_, index) => (
-              <input
-                {...inputProps}
-                key={index}
-                ref={(el) => (inputRefs.current[index] = el)}
-                type="numeric"
-                maxLength={1}
-                onChange={(e) => {
-                  const val = value?.split("");
-                  val[index] = e.target.value;
-                  onChange(val.join(""));
-                }}
-                aria-label={`Digit ${index + 1}`}
-                onKeyUp={(e) => handleKeyUp(e, index)}
-                onBlur={onBlur}
-                value={value?.[index] || ""}
-                className={`otp-input ${classes?.input ?? ""}`}
-                aria-invalid={errors?.[name] ? true : false}
-                autoComplete="one-time-code"
-              />
-            ))}
+            <div
+              className={`d-phone-otp-input-container rf--phone-otp-input-container ${
+                classes?.inputContainer ?? ""
+              }`}
+            >
+              {Array.from({ length }).map((_, index) => (
+                <input
+                  {...inputProps}
+                  key={index}
+                  ref={(el) => (inputRefs.current[index] = el)}
+                  type="numeric"
+                  maxLength={1}
+                  onChange={(e) => {
+                    const val = value?.split("");
+                    val[index] = e.target.value;
+                    onChange(val.join(""));
+                  }}
+                  aria-label={`Digit ${index + 1}`}
+                  onKeyUp={(e) => handleKeyUp(e, index)}
+                  onBlur={onBlur}
+                  value={value?.[index] || ""}
+                  className={`d-otp-input rf--otp-input ${
+                    classes?.input ?? ""
+                  }`}
+                  aria-invalid={errors?.[name] ? true : false}
+                  autoComplete="one-time-code"
+                />
+              ))}
+            </div>
           </div>
         )}
       />

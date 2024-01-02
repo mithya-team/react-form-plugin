@@ -3,6 +3,7 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import ErrorField from "./Error";
 import { BasicInputProps } from "../@types";
+import "./index.css";
 
 const BasicInput: React.FC<BasicInputProps> = ({
   type,
@@ -18,17 +19,29 @@ const BasicInput: React.FC<BasicInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <div className={`container ${classes?.container ?? ""}`}>
+    <div className={`d-container rf--container ${classes?.container ?? ""}`}>
       {label && (
-        <label htmlFor={id} className={`input-label ${classes?.label ?? ""}`}>
+        <label
+          htmlFor={id}
+          className={`rf--input-label ${classes?.label ?? ""}`}
+        >
           {label}
         </label>
       )}
-      <div className={`input-container ${classes?.inputContainer ?? ""}`}>
-        {inputProps?.startAdornment ? inputProps.startAdornment : null}
+      <div
+        className={`d-input-container rf--input-container ${
+          classes?.inputContainer ?? ""
+        }`}
+      >
+        {inputProps?.startAdornment ? (
+          <div className="d-start-adornment rf--start-adornment">
+            {" "}
+            {inputProps?.startAdornment}
+          </div>
+        ) : null}
         <input
           id={id}
-          className={`input ${classes?.input}`}
+          className={`d-input rf--input ${classes?.input}`}
           {...register(name)}
           type={type}
           {...rest}
@@ -36,7 +49,11 @@ const BasicInput: React.FC<BasicInputProps> = ({
           aria-invalid={errors[name] ? "true" : "false"}
           aria-describedby={`${id}-error`}
         />
-        {inputProps?.endAdornment ? inputProps.endAdornment : null}
+        {inputProps?.endAdornment ? (
+          <div className="d-end-adornment rf--end-adornment">
+            {inputProps?.endAdornment}
+          </div>
+        ) : null}
       </div>
 
       <ErrorField

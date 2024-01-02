@@ -18,17 +18,24 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <div className={`container ${classes?.container ?? ""}`}>
+    <div
+      className={`d-checkbox-container rf--checkbox-container ${
+        classes?.container ?? ""
+      }`}
+    >
       {label && (
         <label
           htmlFor={id}
-          className={`checkbox-label ${classes?.label ?? ""}`}
+          className={`rf--checkbox-label ${classes?.label ?? ""}`}
         >
           {label}
         </label>
       )}
       {options.map((option, index) => (
-        <div key={index} className={`checkbox-container ${classes?.container}`}>
+        <div
+          key={index}
+          className={`rf--checkbox-container ${classes?.container}`}
+        >
           <input
             id={`${id}-${index}`}
             {...register(name)}
@@ -36,11 +43,11 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
             {...inputProps}
             type="checkbox"
             value={option.value}
-            className={`checkbox-input ${classes?.checkbox ?? ""}`}
+            className={`rf--checkbox-input ${classes?.checkbox ?? ""}`}
           />
           <label
             htmlFor={`${id}-${index}`}
-            className={`checkbox-label ${classes?.label}`}
+            className={`rf--checkbox-label ${classes?.label}`}
           >
             {option.label}
           </label>
