@@ -37,7 +37,9 @@ const fieldsInput: FormFields[] = [
     name: "name",
     label: "Name",
     defaultValue: "Ram",
-    inputProps: { disabled: true },
+    inputProps: {
+      disabled: true,
+    },
   },
   {
     type: "text",

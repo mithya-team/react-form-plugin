@@ -217,7 +217,7 @@ const schema = z.object({
 // Define the form fields
 const fieldsInput: FieldInput[] = [
   {
-    inputType: "file",
+    type: "file",
     name: "file",
     label: "file",
   },
@@ -239,14 +239,14 @@ const schema = z.object({
 // Define the form fields
 const fieldsInput: FieldInput[] = [
   {
-    inputType: "time",
+    type: "time",
     name: "time",
     label: "Time",
     defaultValue: true,
   },
 
   {
-    inputType: "date",
+    type: "date",
     name: "date",
     label: "Date",
     defaultValue: true,

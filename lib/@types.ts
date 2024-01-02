@@ -77,6 +77,7 @@ export interface OtpInputProps {
     input?: string;
     error?: string;
     label?: string;
+    inputContainer?: string;
   };
   inputProps?: IInputProps;
   defaultValue?: string;

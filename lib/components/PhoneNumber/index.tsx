@@ -31,11 +31,13 @@ const CountryPhoneNumberInput: React.FC<CountryPhoneNumberInputProps> = ({
         name={name}
         control={control}
         render={({ field: { onChange, onBlur, value = "", ref } }) => (
-          <div className={`rf--phone-number ${classes?.root ?? ""}`}>
+          <div
+            className={`d-phone-number rf--phone-number ${classes?.root ?? ""}`}
+          >
             {label && (
               <div
                 id={`${id}-label`}
-                className={`phone-otp-input ${classes?.label ?? ""}`}
+                className={`rf--label ${classes?.label ?? ""}`}
               >
                 {label}
               </div>
@@ -58,13 +60,13 @@ const CountryPhoneNumberInput: React.FC<CountryPhoneNumberInputProps> = ({
                 aria-label="Country Code"
                 onBlur={onBlur}
                 ref={ref}
-                className={`rf--phone-numbe-country-select ${
+                className={`d-phone-select rf--phone-number-country-select ${
                   classes?.select ?? ""
                 }`}
               >
                 {countries.map((country, index) => (
                   <option key={index} value={country.name}>
-                    {country.name} ({country.code})
+                    ({country.code})
                   </option>
                 ))}
               </select>
@@ -82,7 +84,9 @@ const CountryPhoneNumberInput: React.FC<CountryPhoneNumberInputProps> = ({
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                className={`rf--phone-number-input ${classes?.input ?? ""}`}
+                className={`d-phone-number-input rf--phone-number-input ${
+                  classes?.input ?? ""
+                }`}
                 placeholder={`${selectedCountryCode} `}
                 aria-invalid={errors?.[name] ? true : false}
                 aria-label="Phone Number"

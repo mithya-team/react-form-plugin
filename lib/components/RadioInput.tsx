@@ -18,19 +18,20 @@ const RadioInput: React.FC<RadioInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <div className={`container ${classes?.container ?? ""}`}>
+    <div
+      className={`d-radio-container rf--radio-container ${
+        classes?.container ?? ""
+      }`}
+    >
       {label && (
-        <label
-          htmlFor={id}
-          className={`radio-label ${classes?.rootLabel ?? ""}`}
-        >
+        <label htmlFor={id} className={`rf--label ${classes?.rootLabel ?? ""}`}>
           {label}
         </label>
       )}
       {options.map((option, index) => (
         <div
           key={index}
-          className={`radio-container ${classes?.container ?? ""}`}
+          className={`rf--radio-container ${classes?.container ?? ""}`}
         >
           <input
             id={`${id}-${index}`}
@@ -39,11 +40,11 @@ const RadioInput: React.FC<RadioInputProps> = ({
             type="radio"
             {...inputProps}
             value={option.value}
-            className={`radio-input ${classes?.radio ?? ""}`}
+            className={`rf--radio-input ${classes?.radio ?? ""}`}
           />
           <label
             htmlFor={`${id}-${index}`}
-            className={`radio-label ${classes?.label}`}
+            className={`rf-label rf--radio-label ${classes?.label}`}
           >
             {option.label}
           </label>
