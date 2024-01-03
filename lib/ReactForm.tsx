@@ -39,7 +39,7 @@ const ReactForm = <TFieldValues extends FieldValues>({
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className={classes?.formContainer}
+        className={`rf--form ${classes?.formContainer ?? ""}`}
       >
         {fields.map((field, index) => {
           const {
@@ -53,7 +53,10 @@ const ReactForm = <TFieldValues extends FieldValues>({
 
           return <DynamicInput key={index} {...rest} type={dynamicInputType} />;
         })}
-        <button type="submit" className={classes?.submitButton}>
+        <button
+          type="submit"
+          className={`rf-submit ${classes?.submitButton ?? ""}`}
+        >
           Submit
         </button>
       </form>

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { PlainTextProps } from "../@types";
 
 const PlainText: FC<PlainTextProps> = (props) => {
-  const { text, className } = props;
+  const { text, className = "" } = props;
 
   return (
     <>

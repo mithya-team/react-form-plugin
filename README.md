@@ -166,13 +166,106 @@ export default UserDetailsForm;
 
 ### Extending Custom Input Types
 
-Add custom input types by extending the input component map:
+Let's take a cue from OtpInput
+
+Step 1: Create a custom Input Type
+
+```tsx
+import React, { useEffect, useRef } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import { ErrorField } from "react-form-plugin";
+import { OtpInputProps } from "../../@types";
+import "../index.css";
+
+export interface MyCustomFieldProps {
+  name: string; // name is required
+  label?: string;
+  classes?: {
+    root?: string;
+    // other classes for styling goes here
+  };
+  inputProps?: IInputProps;
+  defaultValue?: string;
+}
+
+const MyCustomField: React.FC<MyCustomFieldProps> = ({
+  name,
+  length,
+  classes,
+  label,
+  inputProps,
+}) => {
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
+  const inputRef = useRef<(HTMLInputElement | null)>(null);
+
+
+  const id = `form-${name}`;
+
+  return (
+    <>
+      <Controller
+        name={name}
+        control={control}
+        render={ ({ field: { onChange, onBlur, value = "" } }) => (
+
+          // Render React Component here
+
+        )}
+      />
+      <ErrorField
+        id={`${id}-error`}
+        className={classes?.error}
+        error={errors?.[name]}
+      />
+    </>
+  );
+};
+
+export default MyCustomField;
+```
+
+Step 2: Add custom input types by extending the input component map:
 
 ```tsx
 import { addtype } from "react-form-plugin";
-import MyCustomInput from "./MyCustomInput";
+import type { FormFields } from "react-form-plugin";
+import MyCustomField from "./MyCustomInput";
 
-addtype("myCustom", MyCustomInput);
+// Extend the type
+type ExtendedFormFields =
+  | FormFields
+  | Field<"my-custom-field", MyCustomFieldProps>;
+
+addtype("my-custom-field", MyCustomField);
+```
+
+Step 3: Usage in ReactForm
+
+```tsx
+
+// Define the form fields
+const fieldsInput: ExtendedFormFields[] = [
+  {
+    type: "radio",
+    name: "gender",
+    label: "Gender",
+    options: [
+      { value: "male", label: "Male" },
+      { value: "female", label: "Female" },
+      { value: "trans", label: "Transgender" },
+    ],
+  },
+  // use here, it should support typescript intellisense
+  {
+    type: "my-custom-field",
+    name: "CustomField",
+    // other custom field props
+  }
+
 ```
 
 ## API Reference

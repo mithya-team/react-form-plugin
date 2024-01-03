@@ -31,9 +31,7 @@ const CountryPhoneNumberInput: React.FC<CountryPhoneNumberInputProps> = ({
         name={name}
         control={control}
         render={({ field: { onChange, onBlur, value = "", ref } }) => (
-          <div
-            className={`d-phone-number rf--phone-number ${classes?.root ?? ""}`}
-          >
+          <div className={`rf--phone-number-root ${classes?.root ?? ""}`}>
             {label && (
               <div
                 id={`${id}-label`}
@@ -60,7 +58,7 @@ const CountryPhoneNumberInput: React.FC<CountryPhoneNumberInputProps> = ({
                 aria-label="Country Code"
                 onBlur={onBlur}
                 ref={ref}
-                className={`d-phone-select rf--phone-number-country-select ${
+                className={`rf--phone-number-country-select ${
                   classes?.select ?? ""
                 }`}
               >
@@ -84,7 +82,7 @@ const CountryPhoneNumberInput: React.FC<CountryPhoneNumberInputProps> = ({
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                className={`d-phone-number-input rf--phone-number-input ${
+                className={`rf--input rf--phone-number-input ${
                   classes?.input ?? ""
                 }`}
                 placeholder={`${selectedCountryCode} `}

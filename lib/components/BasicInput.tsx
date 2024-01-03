@@ -19,26 +19,21 @@ const BasicInput: React.FC<BasicInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <div className={`d-container rf--container ${classes?.container ?? ""}`}>
+    <div className={`rf--basic-input-root ${classes?.container ?? ""}`}>
       {label && (
         <label htmlFor={id} className={`rf--label ${classes?.label ?? ""}`}>
           {label}
         </label>
       )}
-      <div
-        className={`d-input-container rf--input-container ${
-          classes?.inputContainer ?? ""
-        }`}
-      >
+      <div className={`rf--input-container ${classes?.inputContainer ?? ""}`}>
         {inputProps?.startAdornment ? (
-          <div className="d-start-adornment rf--start-adornment">
-            {" "}
+          <div className="rf--start-adornment">
             {inputProps?.startAdornment}
           </div>
         ) : null}
         <input
           id={id}
-          className={`d-input rf--input ${classes?.input}`}
+          className={`rf--input ${classes?.input}`}
           {...register(name)}
           type={type}
           {...rest}
@@ -47,9 +42,7 @@ const BasicInput: React.FC<BasicInputProps> = ({
           aria-describedby={`${id}-error`}
         />
         {inputProps?.endAdornment ? (
-          <div className="d-end-adornment rf--end-adornment">
-            {inputProps?.endAdornment}
-          </div>
+          <div className="rf--end-adornment">{inputProps?.endAdornment}</div>
         ) : null}
       </div>
 

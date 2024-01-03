@@ -133,11 +133,13 @@ const fieldsInput: FormFields[] = [
   {
     type: "country-phone-number",
     name: "countryPhoneNumber",
+    label: "Country Phone Number",
   },
   {
     type: "otp",
     name: "phoneOtp",
     length: 6,
+    label: "Phone Otp",
   },
 ];
 

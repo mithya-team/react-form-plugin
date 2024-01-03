@@ -46,7 +46,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
         control={control}
         render={({ field: { onChange, onBlur, value = "" } }) => (
           <div
-            className={`rf--phone-otp-container ${classes?.root ?? ""}`}
+            className={`rf--otp-root ${classes?.root ?? ""}`}
             role="group"
             aria-labelledby={`${id}-label`}
           >
@@ -59,7 +59,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
               </div>
             )}
             <div
-              className={`d-phone-otp-input-container rf--phone-otp-input-container ${
+              className={`rf--otp-input-container ${
                 classes?.inputContainer ?? ""
               }`}
             >
@@ -79,9 +79,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
                   onKeyUp={(e) => handleKeyUp(e, index)}
                   onBlur={onBlur}
                   value={value?.[index] || ""}
-                  className={`d-otp-input rf--otp-input ${
-                    classes?.input ?? ""
-                  }`}
+                  className={`rf--input rf--otp-input ${classes?.input ?? ""}`}
                   aria-invalid={errors?.[name] ? true : false}
                   autoComplete="one-time-code"
                 />

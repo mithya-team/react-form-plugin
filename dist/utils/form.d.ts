@@ -22,6 +22,7 @@ export declare const evaluateConditions: <TFieldValues extends FieldValues>(form
     options: import("../@types").Option[];
     label?: string | undefined;
     classes?: {
+        root?: string | undefined;
         container?: string | undefined;
         select?: string | undefined;
         label?: string | undefined;
@@ -38,6 +39,7 @@ export declare const evaluateConditions: <TFieldValues extends FieldValues>(form
     options: import("../@types").Option[];
     label?: string | undefined;
     classes?: {
+        root?: string | undefined;
         container?: string | undefined;
         radio?: string | undefined;
         label?: string | undefined;
@@ -61,6 +63,7 @@ export declare const evaluateConditions: <TFieldValues extends FieldValues>(form
     options: import("../@types").Option[];
     label?: string | undefined;
     classes?: {
+        root?: string | undefined;
         container?: string | undefined;
         checkbox?: string | undefined;
         label?: string | undefined;

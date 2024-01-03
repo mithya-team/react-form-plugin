@@ -17,7 +17,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <div className={`rf--container ${classes?.container ?? ""}`}>
+    <div className={`rf--select-root ${classes?.root ?? ""}`}>
       {label && (
         <label htmlFor={id} className={`rf--label ${classes?.label ?? ""}`}>
           {label}
@@ -26,7 +26,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
       <select
         id={id}
         {...register(name)}
-        className={`rf--select-input ${classes?.select}`}
+        className={`rf--select-input ${classes?.select ?? ""}`}
         {...rest}
         {...inputProps}
         aria-invalid={errors[name] ? "true" : "false"}

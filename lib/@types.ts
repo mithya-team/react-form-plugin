@@ -104,6 +104,7 @@ export interface SelectInputProps {
   options: Option[];
   label?: string;
   classes?: {
+    root?: string;
     container?: string;
     select?: string;
     label?: string;
@@ -120,6 +121,7 @@ export interface RadioInputProps {
   options: Option[];
   label?: string;
   classes?: {
+    root?: string;
     container?: string;
     radio?: string;
     label?: string;
@@ -143,6 +145,7 @@ export interface CheckboxInputProps {
   options: Option[];
   label?: string;
   classes?: {
+    root?: string;
     container?: string;
     checkbox?: string;
     label?: string;

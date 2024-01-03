@@ -16,7 +16,7 @@ const ErrorField: React.FC<IErrorProps> = ({ error, id, className }) => {
   if (!message) return null;
 
   return (
-    <span id={id} className={`d-error rf--error ${className || ""}`}>
+    <span id={id} className={`rf--error ${className || ""}`}>
       {message}
     </span>
   );

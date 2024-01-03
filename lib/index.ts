@@ -13,6 +13,7 @@ import {
 import OtpInput from "./components/Otp";
 import CountryPhoneNumberInput from "./components/PhoneNumber";
 import SwitchInput from "./components/SwitchInput";
+import ErrorField from "./components/Error";
 
 // Dynamically adding switch component and overriding type
 type FormFields =
@@ -25,5 +26,5 @@ addInputType("switch", SwitchInput);
 addInputType("country-phone-number", CountryPhoneNumberInput);
 addInputType("otp", OtpInput);
 
-export { ReactForm, addInputType, getInputComponent };
+export { ReactForm, addInputType, getInputComponent, ErrorField };
 export type { FieldInput, FormFields };

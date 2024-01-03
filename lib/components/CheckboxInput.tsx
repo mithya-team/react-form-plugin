@@ -18,11 +18,7 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
   } = useFormContext();
   const id = `form-${name}`;
   return (
-    <div
-      className={`d-checkbox-container rf--checkbox-container ${
-        classes?.container ?? ""
-      }`}
-    >
+    <div className={`rf--checkbox-root ${classes?.root ?? ""}`}>
       {label && (
         <label htmlFor={id} className={`rf--label ${classes?.label ?? ""}`}>
           {label}

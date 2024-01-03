@@ -1,4 +1,3 @@
-// SwitchInput.tsx
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { SwitchInputProps } from "../@types";
@@ -13,15 +12,11 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
   const id = `switch-${name}`;
   // TODO: Review css classnames and fix if any
   return (
-    <div
-      className={`d-switch-container rf--switch-container ${
-        classes?.switchContainer ?? ""
-      }`}
-    >
+    <div className={`rf--switch-root ${classes?.switchContainer ?? ""}`}>
       {label && (
         <label
           htmlFor={id}
-          className={`d-switch-label rf--label ${classes?.label ?? ""}`}
+          className={`rf--switch-label rf--label ${classes?.label ?? ""}`}
         >
           {label}
         </label>
@@ -40,24 +35,22 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
               onChange={onChange}
               onBlur={onBlur}
               ref={ref}
-              className={`d-switch-input rf--switch-input ${
-                classes?.input ?? ""
-              }`}
+              className={`rf--switch-input ${classes?.input ?? ""}`}
               checked={value === true ? true : false}
               type="checkbox"
               aria-checked={value ? "true" : "false"} // Dynamically update aria-checked
             />
             <label
               htmlFor={id}
-              className={`d-switch  rf--label rf--switch-label ${
-                classes?.switch ?? ""
-              } ${classes?.activeSwitch ?? ""}`}
+              className={`rf--label rf--switch ${classes?.switch ?? ""} ${
+                classes?.activeSwitch ?? ""
+              }`}
             >
               <span
                 role="button"
-                className={`d-switch-button rf--switch-button ${
-                  classes?.button ?? ""
-                } ${classes?.activeButton ?? ""}`}
+                className={`rf--switch-button ${classes?.button ?? ""} ${
+                  classes?.activeButton ?? ""
+                }`}
               ></span>
             </label>
           </>
