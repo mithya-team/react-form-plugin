@@ -544,3 +544,10 @@ const fieldsInput: FieldInput[] = [
   },
 ];
 ```
+
+## Issues and Pull Requests
+
+Contributions are always welcome! If you encounter any issues or would like to contribute, please file an issue or submit a PR:
+
+Issues: GitHub Issues
+Pull Requests: GitHub Pull Requests
