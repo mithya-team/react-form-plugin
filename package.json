@@ -1,7 +1,7 @@
 {
   "name": "@mithya-team/react-form-plugin",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "license": "MIT",
   "main": "./dist/react-form-plugin.umd.cjs",
