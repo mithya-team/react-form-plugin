@@ -65,6 +65,8 @@ export type BasicInputProps = {
         label?: string;
         input?: string;
         error?: string;
+        endAdornment?: string;
+        startAdornment?: string;
     };
     inputProps?: IInputProps;
     defaultValue?: string;

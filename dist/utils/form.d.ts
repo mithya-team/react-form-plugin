@@ -11,6 +11,8 @@ export declare const evaluateConditions: <TFieldValues extends FieldValues>(form
         label?: string | undefined;
         input?: string | undefined;
         error?: string | undefined;
+        endAdornment?: string | undefined;
+        startAdornment?: string | undefined;
     } | undefined;
     inputProps?: import("../@types").IInputProps | undefined;
     defaultValue?: string | undefined;
