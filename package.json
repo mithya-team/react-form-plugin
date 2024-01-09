@@ -1,8 +1,9 @@
 {
   "name": "@mithya/react-form-plugin",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.0.2",
   "type": "module",
+  "license": "MIT",
   "main": "./dist/react-form-plugin.umd.cjs",
   "module": "./dist/react-form-plugin.js",
   "types": "./dist/form-plugin.d.ts",
@@ -21,7 +22,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "publish": "yarn run build && yarn publish"
   },
   "peerDependencies": {
     "react": "^18.2.0",
