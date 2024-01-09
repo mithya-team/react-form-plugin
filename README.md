@@ -15,13 +15,13 @@ A flexible and dynamic form library for React, featuring a generic form componen
 Install the package using npm or yarn:
 
 ```bash
-npm install git+https://github.com/mithya-team/react-form-plugin.git
+npm install @mithya-team/react-form-plugin
 ```
 
 or
 
 ```bash
-yarn add git+https://github.com/mithya-team/react-form-plugin.git
+yarn add @mithya-team/react-form-plugin
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ Here's a basic example to get you started:
 
 ```tsx
 import React from "react";
-import { ReactForm } from "react-form-plugin";
+import { ReactForm } from "@mithya-team/react-form-plugin";
 
 const MyForm = () => {
   const fieldsInput = [
@@ -59,7 +59,7 @@ Example showing validation with zod
 
 ```tsx
 import React, { useState } from "react";
-import { FieldInput, ReactForm } from "react-form-plugin";
+import { FieldInput, ReactForm } from "@mithya-team/react-form-plugin";
 // import validation library
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -113,7 +113,7 @@ Use conditions to update the field props
 
 ```tsx
 import React from "react";
-import { FieldInput, ReactForm } from "react-form-plugin";
+import { FieldInput, ReactForm } from "@mithya-team/react-form-plugin";
 
 // Define the form fields
 const fieldsInput: FieldInput[] = [
@@ -173,7 +173,7 @@ Step 1: Create a custom Input Type
 ```tsx
 import React, { useEffect, useRef } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { ErrorField } from "react-form-plugin";
+import { ErrorField } from "@mithya-team/react-form-plugin";
 import { OtpInputProps } from "../../@types";
 import "../index.css";
 
@@ -231,8 +231,8 @@ export default MyCustomField;
 Step 2: Add custom input types by extending the input component map:
 
 ```tsx
-import { addtype } from "react-form-plugin";
-import type { FormFields } from "react-form-plugin";
+import { addtype } from "@mithya-team/react-form-plugin";
+import type { FormFields } from "@mithya-team/react-form-plugin";
 import MyCustomField from "./MyCustomInput";
 
 // Extend the type
@@ -330,6 +330,49 @@ const fieldsInput: FieldInput[] = [
 ];
 ```
 
+#### Props
+
+```tsx
+type BasicInputProps = {
+  type: `${BasicInputType}`;
+  name: string;
+  label?: string;
+  classes?: {
+    container?: string;
+    inputContainer?: string;
+    label?: string;
+    input?: string;
+    error?: string;
+  };
+  inputProps?: IInputProps;
+  defaultValue?: string;
+};
+
+interface IInputProps
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement | HTMLSelectElement>,
+    "type"
+  > {
+  startAdornment?: ReactElement;
+  endAdornment?: ReactElement;
+}
+```
+
+#### Styling
+
+```tsx
+  const classes = {
+    container?: string; // rf--basic-input-root
+    inputContainer?: string; // rf--input-container
+    label?: string; // rf--label
+    input?: string; // rf--input
+    error?: string; // rf--error
+    endAdornment?: string; // rf--start-adornment
+    startAdornment?: string; // rf--end-adornment
+  };
+
+```
+
 ### Checkbox config example
 
 ```tsx
@@ -358,6 +401,44 @@ const fieldsInput: FieldInput[] = [
     defaultValue: ["rice"],
   },
 ];
+```
+
+#### Props
+
+```tsx
+type Option = {
+  value: string;
+  label: string;
+  disabled?: boolean;
+};
+
+interface CheckboxInputProps {
+  type: "checkbox";
+  name: string;
+  options: Option[];
+  label?: string;
+  classes?: {
+    root?: string;
+    container?: string;
+    checkbox?: string;
+    label?: string;
+    error?: string;
+  };
+  inputProps?: IInputProps;
+  defaultValue?: Option["value"][];
+}
+```
+
+#### Styling
+
+```tsx
+const classes = {
+    root?: string; // rf--checkbox-root
+    container?: string; // rf--checkbox-container
+    checkbox?: string; // rf--checkbox-input
+    label?: string; // rf--label
+    error?: string; // rf--error
+  };
 ```
 
 ### select config example
@@ -390,6 +471,39 @@ const fieldsInput: FieldInput[] = [
 ];
 ```
 
+#### Props
+
+```tsx
+interface SelectInputProps {
+  type: "select";
+  name: string;
+  options: Option[];
+  label?: string;
+  classes?: {
+    root?: string;
+    container?: string;
+    select?: string;
+    label?: string;
+    option?: string;
+    error?: string;
+  };
+  inputProps?: IInputProps;
+  defaultValue?: Option["value"];
+}
+```
+
+#### Styling
+
+```tsx
+const classes = {
+    root?: string; // rf--select-root
+    select?: string; // rf--select-input
+    label?: string; // rf--label
+    option?: string; // rf--label rf--select-label
+    error?: string; // rf--error
+  };
+```
+
 ### Radio config example
 
 ```tsx
@@ -418,6 +532,40 @@ const fieldsInput: FieldInput[] = [
 ];
 ```
 
+#### Props
+
+```tsx
+interface RadioInputProps {
+  type: "radio";
+  name: string;
+  options: Option[];
+  label?: string;
+  classes?: {
+    root?: string;
+    container?: string;
+    radio?: string;
+    label?: string;
+    error?: string;
+    rootLabel?: string;
+  };
+  inputProps?: IInputProps;
+  defaultValue?: Option["value"];
+}
+```
+
+#### Styling
+
+```tsx
+const classes = {
+    root?: string; // rf--radio-root
+    container?: string; // rf--radio-container
+    radio?: string; // rf--radio-input
+    label?: string; // rf-label rf--radio-label
+    error?: string; // rf--error
+    rootLabel?: string; // rf--label
+  };
+```
+
 ### switch config example
 
 ```tsx
@@ -440,6 +588,41 @@ const fieldsInput: FieldInput[] = [
 ];
 ```
 
+#### Props
+
+```tsx
+interface SwitchInputProps {
+  type: "switch";
+  name: string;
+  label?: string;
+  classes?: {
+    switchContainer?: string;
+    label?: string;
+    switch?: string;
+    button?: string;
+    input?: string;
+    activeSwitch?: string;
+    activeButton?: string;
+  };
+  inputProps?: IInputProps;
+  defaultValue?: boolean;
+}
+```
+
+#### Styling
+
+```tsx
+const classes = {
+    switchContainer?: string; // rf--switch-root
+    label?: string; // rf--switch-label rf--label
+    switch?: string; // rf--label rf--switch
+    button?: string; // rf--switch-button
+    input?: string; // rf--switch-input
+    activeSwitch?: string;
+    activeButton?: string;
+  };
+```
+
 ### File config example
 
 ```tsx
@@ -460,6 +643,14 @@ const fieldsInput: FieldInput[] = [
   },
 ];
 ```
+
+#### Props
+
+Same as BasicInput
+
+#### Styling
+
+Same as BasicInput
 
 ### date and time config example
 
@@ -491,6 +682,14 @@ const fieldsInput: FieldInput[] = [
 ];
 ```
 
+#### Props
+
+Same as BasicInput
+
+#### Styling
+
+Same as BasicInput
+
 ### Otp config example
 
 ```tsx
@@ -510,6 +709,38 @@ const fieldsInput: FieldInput[] = [
     length: 6,
   },
 ];
+```
+
+#### Props
+
+```tsx
+interface OtpInputProps {
+  type: "otp";
+  name: string;
+  length: number;
+  label?: string;
+  classes?: {
+    root?: string;
+    input?: string;
+    error?: string;
+    label?: string;
+    inputContainer?: string;
+  };
+  inputProps?: IInputProps;
+  defaultValue?: string;
+}
+```
+
+#### Styling
+
+```tsx
+const classes = {
+    root?: string; // rf--otp-root
+    input?: string; // rf--input rf--otp-input
+    error?: string; // rf--error
+    label?: string; // rf--label
+    inputContainer?: string; // rf--otp-input-container
+  };
 ```
 
 ### phone number config example
@@ -532,6 +763,42 @@ const fieldsInput: FieldInput[] = [
 ];
 ```
 
+#### Props
+
+```tsx
+interface CountryPhoneNumberInputProps {
+  type: "country-phone-number";
+  name: string;
+  classes?: {
+    root?: string;
+    select?: string;
+    input?: string;
+    inputWrapper?: string;
+    selectWrapper?: string;
+    error?: string;
+    label?: string;
+  };
+  label?: string;
+  inputProps?: IInputProps;
+  selectProps?: IInputProps;
+  defaultValue?: string;
+}
+```
+
+#### Styling
+
+```tsx
+const classes = {
+    root?: string; // rf--phone-number-root
+    select?: string; // rf--phone-number-country-select
+    input?: string; // rf--input rf--phone-number-input
+    inputWrapper?: string; // rf--phone-number-input-wrapper
+    selectWrapper?: string; // rf--phone-number-country-select-wrapper
+    error?: string; // rf--error
+    label?: string; // rf--label
+  };
+```
+
 ### plain text config example
 
 ```tsx
@@ -543,6 +810,23 @@ const fieldsInput: FieldInput[] = [
     text: "This is helper text.",
   },
 ];
+```
+
+#### Props
+
+```tsx
+interface PlainTextProps {
+  type: "plainText";
+  name: string;
+  text?: string | JSX.Element;
+  className?: string;
+}
+```
+
+#### Styling
+
+```tsx
+className?: string; // rf--plain-text
 ```
 
 ## Issues and Pull Requests

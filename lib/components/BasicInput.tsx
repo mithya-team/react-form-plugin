@@ -27,7 +27,9 @@ const BasicInput: React.FC<BasicInputProps> = ({
       )}
       <div className={`rf--input-container ${classes?.inputContainer ?? ""}`}>
         {inputProps?.startAdornment ? (
-          <div className="rf--start-adornment">
+          <div
+            className={`rf--start-adornment ${classes?.startAdornment ?? ""}`}
+          >
             {inputProps?.startAdornment}
           </div>
         ) : null}
@@ -42,7 +44,9 @@ const BasicInput: React.FC<BasicInputProps> = ({
           aria-describedby={`${id}-error`}
         />
         {inputProps?.endAdornment ? (
-          <div className="rf--end-adornment">{inputProps?.endAdornment}</div>
+          <div className={`rf--end-adornment ${classes?.endAdornment ?? ""}`}>
+            {inputProps?.endAdornment}
+          </div>
         ) : null}
       </div>
 

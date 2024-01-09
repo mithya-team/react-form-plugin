@@ -10,7 +10,6 @@ const SwitchInput: React.FC<SwitchInputProps> = ({
 }) => {
   const { control } = useFormContext();
   const id = `switch-${name}`;
-  // TODO: Review css classnames and fix if any
   return (
     <div className={`rf--switch-root ${classes?.switchContainer ?? ""}`}>
       {label && (
