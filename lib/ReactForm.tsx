@@ -15,8 +15,9 @@ import { evaluateConditions } from "./utils/form";
 interface ReactFormProps<TFieldValues extends FieldValues> {
   fields: FieldInput[];
   onSubmit: SubmitHandler<TFieldValues>;
-  validation: Resolver<TFieldValues>; // Resolver from react-hook-form
+  validation?: Resolver<TFieldValues>; // Resolver from react-hook-form
   classes?: Record<string, string>; // Object for CSS classes
+  defaultValues?: DefaultValues<TFieldValues>;
 }
 
 const ReactForm = <TFieldValues extends FieldValues>({
@@ -24,10 +25,12 @@ const ReactForm = <TFieldValues extends FieldValues>({
   onSubmit,
   validation,
   classes,
+  defaultValues: initialValues = {} as DefaultValues<TFieldValues>,
 }: ReactFormProps<TFieldValues>): React.ReactNode => {
-  const defaultValues = getDefaultValueObject(
-    fields
-  ) as DefaultValues<TFieldValues>;
+  const defaultValues = {
+    ...(getDefaultValueObject(fields) as DefaultValues<TFieldValues>),
+    ...initialValues,
+  };
   const methods = useForm<TFieldValues>({
     resolver: validation,
     defaultValues: defaultValues,
